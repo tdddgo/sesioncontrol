@@ -1,0 +1,6 @@
+Titulo: Feria de cultura
+Seccion: Cultura
+Imagen: no-existe.jpg
+Publicar: si
+---
+Texto.

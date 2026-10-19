@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XYZ Sevilla — Noticias de Sevilla, Andalucía y España</title>
+  <meta name="description" content="XYZ Sevilla: periódico digital de Sevilla y Andalucía (proyecto universitario).">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ ES NOTICIA ============ -->
+<div class="trending">
+  <div class="container">
+    <strong>Es noticia</strong>
+    <a href="#">Tema destacado 1</a>
+    <a href="#">Tema destacado 2</a>
+    <a href="#">Tema destacado 3</a>
+    <a href="#">Tema destacado 4</a>
+    <a href="#">Tema destacado 5</a>
+    <a href="#">Tema destacado 6</a>
+    <a href="#">Tema destacado 7</a>
+  </div>
+</div>
+
+<!-- ============ CABECERA ============ -->
+<header class="site-header">
+  <div class="container">
+    <div class="header-top">
+      <div class="date" id="fecha"><b>Lunes</b> 19 de octubre 2026</div>
+      <a href="index.html" class="logo">XYZ Sevilla<small>Periódico digital</small></a>
+      <div class="header-actions">
+        <a href="#" class="btn primary">Suscríbete</a>
+        <a href="#" class="btn">Iniciar sesión</a>
+        <button class="burger" aria-label="Menú" aria-expanded="false">☰</button>
+      </div>
+    </div>
+    <div class="edition">
+      <a href="#">Nacional</a>
+      <a href="#" class="active">Sevilla</a>
+    </div>
+  </div>
+  <nav class="main-nav" aria-label="Secciones">
+    <div class="container">
+      <ul>
+        <li><a href="#" class="active">Portada</a></li>
+        <li><a href="#">Sevilla</a></li>
+        <li><a href="#">Cofradías</a></li>
+        <li><a href="#">Andalucía</a></li>
+        <li><a href="#">Opinión</a></li>
+        <li><a href="#">Economía</a></li>
+        <li><a href="#">España</a></li>
+        <li><a href="#">Internacional</a></li>
+        <li><a href="#">Fútbol Local</a></li>
+        <li><a href="#">Deportes</a></li>
+        <li><a href="#">Qué Plan</a></li>
+        <li><a href="#">Gastronomía</a></li>
+        <li><a href="#">Cultura</a></li>
+        <li><a href="#">Viajar</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main class="container" id="main">
+
+  <div class="ad banner">Publicidad · 970×90</div>
+
+  <!-- ============ APERTURA ============ -->
+  <section class="block">
+    <div class="grid hero">
+      <article>
+        <figure class="ph"><span>Imagen principal</span></figure>
+        <span class="kicker" style="margin-top:12px">Antetítulo</span>
+        <h2 class="title xl tag-premium"><a href="#">Titular principal de la portada, en varias líneas para dar peso</a></h2>
+        <p class="sub">Subtítulo o entradilla que amplía el titular principal.</p>
+        <p class="author">Nombre del autor</p>
+        <div class="related">
+          <a href="#">Noticia relacionada número uno</a>
+          <a href="#">Noticia relacionada número dos</a>
+        </div>
+      </article>
+
+      <div class="col-stack">
+        <article>
+          <h2 class="title lg tag-premium"><a href="#">Titular de segunda noticia de apertura</a></h2>
+          <p class="sub">Entradilla breve de la noticia.</p>
+          <p class="author">Autor</p>
+        </article>
+        <article>
+          <h2 class="title lg"><a href="#">Titular de tercera noticia de apertura</a></h2>
+          <p class="sub">Entradilla breve de la noticia.</p>
+          <p class="author">Autor</p>
+        </article>
+      </div>
+
+      <div class="col-stack">
+        <article>
+          <figure class="ph"><span>Imagen</span></figure>
+          <h2 class="title md"><a href="#">Titular con imagen en la columna derecha</a></h2>
+          <p class="sub">Entradilla breve.</p>
+          <p class="author">Autor</p>
+        </article>
+        <article>
+          <h2 class="title md tag-premium"><a href="#">Titular solo texto en la columna derecha</a></h2>
+          <p class="author">Autor</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="grid cols-4">
+      <article><figure class="ph r-4x3"><span>Imagen</span></figure><h3 class="title md"><a href="#">Titular de noticia en cuatro columnas</a></h3><p class="author">Autor</p></article>
+      <article><h3 class="title md tag-premium"><a href="#">Titular de noticia solo texto con entradilla</a></h3><p class="sub">Entradilla de la noticia.</p><p class="author">Autor · Provincia</p></article>
+      <article><figure class="ph r-4x3"><span>Imagen</span></figure><h3 class="title md"><a href="#">Otro titular en cuatro columnas</a></h3><p class="author">Autor</p></article>
+      <article><figure class="ph r-4x3"><span>Imagen</span></figure><h3 class="title md"><a href="#">Cuarto titular de la fila</a></h3><p class="author">Autor</p></article>
+    </div>
+  </section>
+
+  <div class="ad banner">Publicidad · 970×250</div>
+
+  <!-- ============ NOTICIAS + COLUMNA PUBLICIDAD ============ -->
+  <section class="block">
+    <div class="grid with-side">
+      <div class="grid cols-2">
+        <article><figure class="ph"><span>Imagen</span></figure><figcaption>Pie de foto. (Crédito)</figcaption><h3 class="title lg"><a href="#">Noticia local con imagen grande</a></h3><p class="sub">Entradilla de la noticia local.</p><p class="author">Autor</p></article>
+        <article><figure class="ph"><span>Imagen</span></figure><figcaption>Pie de foto. (Crédito)</figcaption><h3 class="title lg tag-premium"><a href="#">Otra noticia local con imagen grande</a></h3><p class="sub">Entradilla de la noticia.</p><p class="author">Autor</p></article>
+        <article>
+          <span class="live">Directo</span>
+          <figure class="ph" style="margin-top:6px"><span>Vídeo / imagen</span></figure>
+          <h3 class="title lg"><a href="#">Noticia en directo con enlaces relacionados</a></h3>
+          <div class="related"><a href="#">Último minuto 1</a><a href="#">Último minuto 2</a></div>
+        </article>
+        <article><figure class="ph"><span>Imagen</span></figure><h3 class="title lg"><a href="#">Noticia de provincia</a></h3><p class="sub">Entradilla de la noticia.</p><p class="author">Autor</p></article>
+        <article><figure class="ph"><span>Imagen</span></figure><h3 class="title lg"><a href="#">Noticia de sucesos o sociedad</a></h3><p class="sub">Entradilla de la noticia.</p><p class="author">Autor</p></article>
+        <article><figure class="ph"><span>Imagen</span></figure><h3 class="title lg"><a href="#">Noticia de ciudad</a></h3><p class="sub">Entradilla de la noticia.</p><p class="author">Autor</p></article>
+      </div>
+      <aside>
+        <div class="ad box">Publicidad · 300×250</div>
+        <div class="ad box" style="height:600px">Publicidad · 300×600</div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ OFERTAS ============ -->
+  <section class="block">
+    <h2 class="section-title">Ofertas <a href="#">Ver todas</a></h2>
+    <div class="grid cols-4">
+      <div class="offer"><figure class="ph"><span>Imagen</span></figure><div class="body"><h3 class="title sm">Título de la oferta</h3><p class="author">Nombre del negocio</p><p class="price">21 €</p><a class="btn primary" href="#">Ver oferta</a></div></div>
+      <div class="offer"><figure class="ph"><span>Imagen</span></figure><div class="body"><h3 class="title sm">Título de la oferta</h3><p class="author">Nombre del negocio</p><p class="price">23 €</p><a class="btn primary" href="#">Ver oferta</a></div></div>
+      <div class="offer"><figure class="ph"><span>Imagen</span></figure><div class="body"><h3 class="title sm">Título de la oferta</h3><p class="author">Nombre del negocio</p><p class="price">32 €</p><a class="btn primary" href="#">Ver oferta</a></div></div>
+      <div class="offer"><figure class="ph"><span>Imagen</span></figure><div class="body"><h3 class="title sm">Título de la oferta</h3><p class="author">Nombre del negocio</p><p class="price">22 €</p><a class="btn primary" href="#">Ver oferta</a></div></div>
+    </div>
+  </section>
+
+  <!-- ============ DEPORTES ============ -->
+  <section class="block">
+    <h2 class="section-title">Deportes <a href="#">Ver sección</a></h2>
+    <div class="grid" style="grid-template-columns: 2fr 1fr 1fr; gap: var(--gap)">
+      <article><figure class="ph"><span>Imagen</span></figure><span class="kicker" style="margin-top:10px">Equipo local</span><h3 class="title lg tag-premium"><a href="#">Titular principal de deportes</a></h3><p class="sub">Entradilla de la noticia deportiva.</p><p class="author">Autor</p></article>
+      <article><span class="kicker">Podcast · Episodio 1</span><h3 class="title md"><a href="#">Titular del podcast deportivo</a></h3><p class="sub">Descripción breve del episodio.</p><p class="author">Nombre del programa</p></article>
+      <article><figure class="ph r-4x3"><span>Imagen</span></figure><span class="kicker" style="margin-top:10px">Otro equipo</span><h3 class="title md"><a href="#">Titular deportivo secundario</a></h3><p class="author">Autor</p></article>
+    </div>
+  </section>
+
+  <!-- ============ OPINIÓN ============ -->
+  <section class="block opinion">
+    <h2 class="section-title">Opinión <a href="#">Ver sección</a></h2>
+    <div class="grid cols-4">
+      <article><div><h3 class="title md"><a href="#">Título del artículo de opinión</a></h3><p class="sub">Entradilla del artículo.</p><p class="author">Columnista</p></div><div class="avatar"></div></article>
+      <article><div><h3 class="title md"><a href="#">Título del artículo de opinión</a></h3><p class="sub">Entradilla del artículo.</p><p class="author">Columnista</p></div><div class="avatar"></div></article>
+      <article><div><h3 class="title md"><a href="#">Título del artículo de opinión</a></h3><p class="sub">Entradilla del artículo.</p><p class="author">Columnista</p></div><div class="avatar"></div></article>
+      <article><div><h3 class="title md"><a href="#">Título del artículo de opinión</a></h3><p class="sub">Entradilla del artículo.</p><p class="author">Columnista</p></div><div class="avatar"></div></article>
+    </div>
+  </section>
+
+  <div class="ad banner">Publicidad · 970×90</div>
+
+  <!-- ============ CULTURA / VIAJAR / QUÉ PLAN ============ -->
+  <section class="block">
+    <h2 class="section-title">Cultura <a href="#">Ver sección</a></h2>
+    <div class="grid stories-3">
+      <article><figure class="ph"><span>Imagen</span></figure><h3 class="title lg tag-premium"><a href="#">Titular de cultura con imagen</a></h3><p class="sub">Entradilla de la noticia.</p><p class="author">Autor</p></article>
+      <article><figure class="ph"><span>Imagen</span></figure><h3 class="title lg"><a href="#">Titular de cultura con imagen</a></h3><p class="sub">Entradilla de la noticia.</p><p class="author">Autor</p></article>
+      <article><figure class="ph"><span>Imagen</span></figure><h3 class="title lg"><a href="#">Titular de cultura con imagen</a></h3><p class="sub">Entradilla de la noticia.</p><p class="author">Autor</p></article>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title">Viajar <a href="#">Ver sección</a></h2>
+    <div class="grid cols-4">
+      <article><figure class="ph r-4x3"><span>Imagen</span></figure><span class="kicker" style="margin-top:10px">Viajar</span><h3 class="title md"><a href="#">Titular de viajes</a></h3><p class="author">Autor</p></article>
+      <article><h3 class="title md"><a href="#">Titular de viajes solo texto</a></h3><p class="sub">Entradilla del reportaje.</p><p class="author">Autor</p></article>
+      <article><figure class="ph r-4x3"><span>Imagen</span></figure><h3 class="title md"><a href="#">Titular de viajes</a></h3><p class="author">Autor</p></article>
+      <article><figure class="ph r-4x3"><span>Imagen</span></figure><h3 class="title md"><a href="#">Titular de viajes</a></h3><p class="author">Autor</p></article>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="section-title">Qué Plan <a href="#">Ver agenda</a></h2>
+    <div class="grid cols-4">
+      <article><figure class="ph r-4x3"><span>Imagen</span></figure><h3 class="title md"><a href="#">Plan del fin de semana</a></h3><p class="author">Autor</p></article>
+      <article><h3 class="title md"><a href="#">Plan solo texto con entradilla</a></h3><p class="sub">Entradilla del plan.</p><p class="author">Autor</p></article>
+      <article><figure class="ph r-4x3"><span>Imagen</span></figure><h3 class="title md"><a href="#">Concierto o espectáculo</a></h3><p class="author">Autor</p></article>
+      <article><figure class="ph r-4x3"><span>Imagen</span></figure><h3 class="title md"><a href="#">Exposición o teatro</a></h3><p class="author">Autor</p></article>
+    </div>
+  </section>
+
+  <!-- ============ ENFOQUE ============ -->
+  <section class="block">
+    <h2 class="section-title">Enfoque</h2>
+    <div class="grid" style="grid-template-columns: 2fr 1fr 1fr">
+      <article><figure class="ph"><span>Reportaje / vídeo</span></figure><h3 class="title lg"><a href="#">Reportaje especial a gran formato</a></h3><p class="author">Equipo de redacción</p></article>
+      <article><figure class="ph r-1x1"><span>Imagen</span></figure><span class="kicker" style="margin-top:10px">Entrevista</span><h3 class="title md tag-premium"><a href="#">«Cita destacada de la entrevista»</a></h3><p class="author">Autor</p></article>
+      <article><figure class="ph r-1x1"><span>Imagen</span></figure><h3 class="title md"><a href="#">Titular de enfoque</a></h3><p class="author">Autor</p></article>
+    </div>
+  </section>
+
+  <!-- ============ GASTRONOMÍA + ECONOMÍA ============ -->
+  <section class="block">
+    <div class="grid with-side">
+      <div>
+        <h2 class="section-title">Gastronomía <a href="#">Ver sección</a></h2>
+        <div class="grid cols-2">
+          <article><figure class="ph"><span>Imagen</span></figure><h3 class="title lg tag-premium"><a href="#">Crítica de restaurante</a></h3><p class="sub">Entradilla de la crítica.</p><p class="author">Autor</p></article>
+          <article><h3 class="title lg"><a href="#">Entrevista de economía</a></h3><p class="sub">Entradilla de la entrevista.</p><p class="author">Autor</p>
+            <div class="related"><a href="#">Otra entrevista relacionada</a></div></article>
+        </div>
+      </div>
+      <aside><div class="ad box">Publicidad · 300×250</div></aside>
+    </div>
+  </section>
+
+  <!-- ============ LO MÁS LEÍDO ============ -->
+  <section class="block most-read">
+    <h2 class="section-title">Lo más leído</h2>
+    <ol>
+      <li><a href="#">Titular de la noticia más leída número uno</a></li>
+      <li><a href="#">Titular de la noticia más leída número seis</a></li>
+      <li><a href="#">Titular de la noticia más leída número dos</a></li>
+      <li><a href="#">Titular de la noticia más leída número siete</a></li>
+      <li><a href="#">Titular de la noticia más leída número tres</a></li>
+      <li><a href="#">Titular de la noticia más leída número ocho</a></li>
+      <li><a href="#">Titular de la noticia más leída número cuatro</a></li>
+      <li><a href="#">Titular de la noticia más leída número nueve</a></li>
+      <li><a href="#">Titular de la noticia más leída número cinco</a></li>
+      <li><a href="#">Titular de la noticia más leída número diez</a></li>
+    </ol>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <h4>XYZ Sevilla</h4>
+        <p>Proyecto universitario. Todo el contenido es ficticio.</p>
+      </div>
+      <ul class="links">
+        <li><a href="#">Sobre nosotros</a></li>
+        <li><a href="#">Contacto</a></li>
+        <li><a href="#">Política de privacidad</a></li>
+        <li><a href="#">Política de cookies</a></li>
+        <li><a href="#">Condiciones de uso</a></li>
+        <li><a href="#">Aviso legal</a></li>
+        <li><a href="#">Noticias Sevilla</a></li>
+        <li><a href="#">Noticias Andalucía</a></li>
+      </ul>
+    </div>
+    <p class="copy">© 2026 XYZ Sevilla. Trabajo académico.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

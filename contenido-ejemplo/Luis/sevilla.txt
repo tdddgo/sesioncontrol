@@ -1,0 +1,6 @@
+Titulo: El Sevilla gana en casa
+Seccion: Deportes
+Entradilla: Victoria por 2-1.
+Publicar: si
+---
+Crónica del partido.

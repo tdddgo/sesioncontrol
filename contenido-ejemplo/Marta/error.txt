@@ -1,0 +1,5 @@
+Titulo: Sección mal escrita
+Seccion: Playa
+Publicar: si
+---
+Texto.

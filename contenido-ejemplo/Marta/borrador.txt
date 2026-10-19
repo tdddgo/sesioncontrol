@@ -1,0 +1,5 @@
+Titulo: Borrador sin publicar
+Seccion: Cultura
+Publicar: no
+---
+Texto.
