@@ -9,7 +9,7 @@ La web se regenera sola cada 15 minutos. No hay que avisar a nadie ni tocar cód
 2. **Un Google Doc por noticia.** Duplica el Doc `PLANTILLA` y rellénalo. No cambies los nombres de los campos.
 3. **La cabecera va arriba, una línea por campo, seguida de una línea con `---`.** Debajo de `---` va el texto de la noticia (párrafos separados por una línea en blanco).
 4. **`Publicar: si` para que salga.** Con `no` (o sin el campo) queda como borrador y no se ve en la web.
-5. **La sección debe ser una de la lista:** Sevilla, Cofradías, Andalucía, Opinión, Economía, España, Internacional, Deportes, Qué Plan, Gastronomía, Cultura, Viajar.
+5. **La sección debe ser una de la lista:** Mesa del Congreso, Presidente de Gobierno, Ministros, Diputados oficialistas, Diputados de oposición, Otro grupo de oposición. Elige el grupo al que pertenece tu rol.
 6. **La imagen va en tu misma carpeta**, en JPG o PNG, y `Imagen:` lleva su nombre exacto (por ejemplo `puente.jpg`). Máximo 2 MB, formato horizontal. Usa solo fotos propias o libres de derechos, y pon el crédito en `Credito:`.
 7. **Para corregir, edita el mismo Doc.** No hagas copias; se actualiza en el siguiente ciclo. Para retirar una noticia pon `Publicar: no`.
 8. **No muevas ni renombres las carpetas de otras personas** ni la carpeta raíz.
@@ -19,7 +19,7 @@ La web se regenera sola cada 15 minutos. No hay que avisar a nadie ni tocar cód
 
 ```
 Titulo: Titular de la noticia
-Seccion: Sevilla
+Seccion: Ministros
 Autor: Nombre Apellido
 Entradilla: Una o dos frases que resumen la noticia.
 Imagen: foto.jpg

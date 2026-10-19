@@ -1,5 +1,5 @@
 Titulo: Feria de cultura
-Seccion: Cultura
+Seccion: Diputados de oposición
 Imagen: no-existe.jpg
 Publicar: si
 ---

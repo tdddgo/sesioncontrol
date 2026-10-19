@@ -11,8 +11,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent
 OUT = ROOT / "public"
-SECCIONES = ["Sevilla", "Cofradías", "Andalucía", "Opinión", "Economía", "España",
-             "Internacional", "Deportes", "Qué Plan", "Gastronomía", "Cultura", "Viajar"]
+SECCIONES = ["Mesa del Congreso", "Presidente de Gobierno", "Ministros", "Diputados oficialistas",
+             "Diputados de oposición", "Otro grupo de oposición"]
 CAMPOS = {"titulo", "seccion", "autor", "entradilla", "imagen", "credito", "destacada", "publicar", "fecha"}
 IMG_EXT = {".jpg", ".jpeg", ".png", ".webp"}
 MAX_IMG = 2 * 1024 * 1024
