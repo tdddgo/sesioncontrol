@@ -216,7 +216,11 @@ def main():
     g.add_argument("--drive", action="store_true")
     args = ap.parse_args()
 
-    docs, imgs = leer_local(args.local) if args.local else leer_drive(os.environ["DRIVE_FOLDER_ID"])
+    if args.drive:
+        for var in ("GOOGLE_SERVICE_ACCOUNT_JSON", "DRIVE_FOLDER_ID"):
+            if not os.environ.get(var, "").strip():
+                sys.exit(f"ERROR: el secreto {var} está vacío o no existe. Créalo en Settings > Secrets and variables > Actions > Repository secrets.")
+    docs, imgs = leer_local(args.local) if args.local else leer_drive(os.environ["DRIVE_FOLDER_ID"].strip())
 
     arts, errores, slugs = [], [], set()
     for persona, nombre, texto, mod in docs:
