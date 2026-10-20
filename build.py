@@ -167,7 +167,7 @@ def pagina(titulo, cuerpo, root="", activa=""):
 <body>
 <header class="site-header"><div class="container">
 <div class="header-top"><div class="date" id="fecha"></div>
-<a href="{root}index.html" class="logo">XYZ Sevilla<small>Periódico digital</small></a>
+<a href="{root}index.html" class="logo" aria-label="XYZ Sevilla"><span class="logo-xyz">XYZ</span><span class="logo-city">Sevilla</span></a>
 <div class="header-actions"><button class="burger" aria-label="Menú" aria-expanded="false">☰</button></div></div></div>
 <nav class="main-nav"><div class="container"><ul>{nav_html(root, activa)}</ul></div></nav></header>
 <main class="container">{cuerpo}</main>
