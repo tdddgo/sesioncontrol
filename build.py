@@ -21,6 +21,7 @@ MAX_AUDIO = 25 * 1024 * 1024
 CARPETA_COMPARTIDA = "insumos"   # carpeta de imágenes y audios disponibles para todos
 
 esc = html.escape
+VERSION = datetime.now(timezone.utc).strftime("%Y%m%d%H%M")   # evita que el navegador use CSS/JS viejos
 
 
 def slugify(s):
@@ -163,7 +164,7 @@ def pagina(titulo, cuerpo, root="", activa=""):
 <title>{esc(titulo)} — XYZ Sevilla</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700;8..60,800&display=swap">
-<link rel="stylesheet" href="{root}styles.css"></head>
+<link rel="stylesheet" href="{root}styles.css?v={VERSION}"></head>
 <body>
 <header class="site-header"><div class="container">
 <div class="header-top"><div class="date" id="fecha"></div>
@@ -174,7 +175,7 @@ def pagina(titulo, cuerpo, root="", activa=""):
 <footer class="site-footer"><div class="container"><h4>XYZ Sevilla</h4>
 <p>Proyecto universitario. Contenido elaborado por el equipo.</p>
 <p class="copy">© {datetime.now().year} XYZ Sevilla. Trabajo académico.</p></div></footer>
-<script src="{root}script.js"></script></body></html>"""
+<script src="{root}script.js?v={VERSION}"></script></body></html>"""
 
 
 def figura(a, root, ratio=""):
