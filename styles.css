@@ -39,11 +39,11 @@ img { max-width: 100%; display: block; }
 .header-top { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 16px 0; gap: 16px; }
 .date { font-size: 13px; color: var(--muted); }
 .date b { color: var(--ink); }
-.logo { display: flex; flex-direction: column; align-items: center; color: var(--brand); line-height: 1; }
+.logo { display: flex; flex-direction: column; align-items: center; color: #111; line-height: 1; }
 .logo:hover { text-decoration: none; }
-.logo-xyz { font-family: var(--display); font-size: 76px; font-weight: 900; letter-spacing: .02em; line-height: .88; }
-.logo-city { display: flex; align-items: center; gap: 14px; margin-top: 8px; font-family: var(--serif); font-size: 16px; font-weight: 700; letter-spacing: .55em; text-transform: uppercase; padding-left: .55em; }
-.logo-city::before, .logo-city::after { content: ""; width: 34px; height: 2px; background: var(--accent); }
+/* Capitales romanas de trazo grueso, en negro, como una cabecera de diario clásico */
+.logo-xyz { font-family: "Cinzel", "Playfair Display", Georgia, serif; font-size: 88px; font-weight: 900; letter-spacing: .03em; line-height: .9; }
+.logo-city { margin-top: 10px; font-family: "Cinzel", Georgia, serif; font-size: 17px; font-weight: 800; letter-spacing: .6em; padding-left: .6em; text-transform: uppercase; }
 .header-actions { display: flex; gap: 8px; justify-content: flex-end; align-items: center; }
 .btn { display: inline-block; padding: 8px 14px; font-size: 13px; font-weight: 600; border-radius: 4px; border: 1px solid var(--brand); color: var(--brand); background: #fff; cursor: pointer; }
 .btn:hover { text-decoration: none; background: var(--soft); }
@@ -131,9 +131,8 @@ figcaption { font-size: 12px; color: var(--muted); margin-top: 4px; }
 @media (max-width: 700px) {
   .header-top { grid-template-columns: auto 1fr auto; }
   .date, .header-actions .btn:not(.primary), .edition { display: none; }
-  .logo-xyz { font-size: 46px; }
-  .logo-city { font-size: 11px; gap: 8px; }
-  .logo-city::before, .logo-city::after { width: 18px; }
+  .logo-xyz { font-size: 52px; }
+  .logo-city { font-size: 11px; margin-top: 6px; }
   .burger { display: block; }
   .main-nav { display: none; }
   .main-nav.open { display: block; }
