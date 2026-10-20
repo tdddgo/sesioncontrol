@@ -1,0 +1,7 @@
+Titulo: Entrevista en audio con la Mesa
+Seccion: Mesa del Congreso
+Entradilla: Un podcast de prueba.
+Audio: saludo.wav
+Publicar: si
+---
+Transcripción breve del podcast.

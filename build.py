@@ -13,9 +13,12 @@ ROOT = Path(__file__).parent
 OUT = ROOT / "public"
 SECCIONES = ["Mesa del Congreso", "Presidente de Gobierno", "Ministros", "Diputados oficialistas",
              "Diputados de oposición", "Otro grupo de oposición"]
-CAMPOS = {"titulo", "seccion", "autor", "entradilla", "imagen", "credito", "destacada", "publicar", "fecha"}
+CAMPOS = {"titulo", "seccion", "autor", "entradilla", "imagen", "credito", "audio", "destacada", "publicar", "fecha"}
 IMG_EXT = {".jpg", ".jpeg", ".png", ".webp"}
 MAX_IMG = 2 * 1024 * 1024
+AUDIO_EXT = {".mp3", ".m4a", ".wav", ".ogg"}
+MAX_AUDIO = 25 * 1024 * 1024
+CARPETA_COMPARTIDA = "insumos"   # carpeta de imágenes y audios disponibles para todos
 
 esc = html.escape
 
@@ -60,23 +63,29 @@ def parse_doc(text, persona, nombre_origen, modificado):
             return None, "Fecha debe tener formato AAAA-MM-DD"
     return {
         "titulo": meta["titulo"], "seccion": secc, "autor": meta.get("autor") or persona,
-        "entradilla": meta.get("entradilla", ""), "imagen_nombre": meta.get("imagen", ""),
+        "entradilla": meta.get("entradilla", ""), "imagen_nombre": meta.get("imagen", ""), "audio_nombre": meta.get("audio", ""),
         "credito": meta.get("credito", ""), "destacada": meta.get("destacada", "").lower() in ("si", "sí"),
         "cuerpo": cuerpo, "fecha": fecha, "persona": persona, "origen": nombre_origen,
     }, None
 
 
 def leer_local(carpeta):
+    """Devuelve (docs, medios). medios[(persona, nombre)] = (tamaño, función que devuelve los bytes).
+    Los archivos de la carpeta Insumos se guardan con persona "*" (sirven para todos)."""
     base = Path(carpeta)
-    docs, imgs = [], {}
-    for p in sorted(base.glob("*/*")):
-        persona = p.parent.name
-        if p.suffix.lower() == ".txt":
-            mod = datetime.fromtimestamp(p.stat().st_mtime, timezone.utc)
-            docs.append((persona, p.name, p.read_text(encoding="utf-8"), mod))
-        elif p.suffix.lower() in IMG_EXT:
-            imgs[(persona, p.name)] = p.read_bytes()
-    return docs, imgs
+    docs, medios = [], {}
+    for d in sorted(x for x in base.iterdir() if x.is_dir()):
+        compartida = norm_key(d.name) == CARPETA_COMPARTIDA
+        for p in sorted(d.rglob("*") if compartida else d.glob("*")):
+            if not p.is_file():
+                continue
+            ext = p.suffix.lower()
+            if ext == ".txt" and not compartida:
+                mod = datetime.fromtimestamp(p.stat().st_mtime, timezone.utc)
+                docs.append((d.name, p.name, p.read_text(encoding="utf-8"), mod))
+            elif ext in IMG_EXT | AUDIO_EXT:
+                medios[("*" if compartida else d.name, p.name)] = (p.stat().st_size, p.read_bytes)
+    return docs, medios
 
 
 def leer_drive(folder_id):
@@ -100,9 +109,33 @@ def leer_drive(folder_id):
             if not token:
                 return items
 
-    docs, imgs = [], {}
+    def descargador(fid):
+        def bajar():
+            buf = io.BytesIO()
+            dl = MediaIoBaseDownload(buf, svc.files().get_media(fileId=fid), chunksize=8 * 1024 * 1024)
+            done = False
+            while not done:
+                _, done = dl.next_chunk()
+            return buf.getvalue()
+        return bajar
+
+    def es_medio(f):
+        ext = Path(f["name"]).suffix.lower()
+        return f["mimeType"].startswith(("image/", "audio/")) or ext in IMG_EXT | AUDIO_EXT
+
+    def recoger_compartida(fid, nivel=0):
+        for f in listar(fid):
+            if f["mimeType"] == "application/vnd.google-apps.folder" and nivel < 3:
+                recoger_compartida(f["id"], nivel + 1)
+            elif es_medio(f):
+                medios[("*", f["name"])] = (int(f.get("size", 0)), descargador(f["id"]))
+
+    docs, medios = [], {}
     for sub in listar(folder_id):
         if sub["mimeType"] != "application/vnd.google-apps.folder":
+            continue
+        if norm_key(sub["name"]) == CARPETA_COMPARTIDA:
+            recoger_compartida(sub["id"])
             continue
         persona = sub["name"]
         for f in listar(sub["id"]):
@@ -110,16 +143,9 @@ def leer_drive(folder_id):
             if f["mimeType"] == "application/vnd.google-apps.document":
                 data = svc.files().export(fileId=f["id"], mimeType="text/plain").execute()
                 docs.append((persona, f["name"], data.decode("utf-8"), mod))
-            elif f["mimeType"].startswith("image/"):
-                if int(f.get("size", 0)) > MAX_IMG:
-                    continue
-                buf = io.BytesIO()
-                dl = MediaIoBaseDownload(buf, svc.files().get_media(fileId=f["id"]))
-                done = False
-                while not done:
-                    _, done = dl.next_chunk()
-                imgs[(persona, f["name"])] = buf.getvalue()
-    return docs, imgs
+            elif es_medio(f):
+                medios[(persona, f["name"])] = (int(f.get("size", 0)), descargador(f["id"]))
+    return docs, medios
 
 
 # ---------- HTML ----------
@@ -158,7 +184,7 @@ def tarjeta(a, root, size="md", con_img=True, ratio="r-4x3", entradilla=False):
     img = figura(a, root, ratio) if con_img else ""
     sub = f'<p class="sub">{esc(a["entradilla"])}</p>' if entradilla and a["entradilla"] else ""
     return (f'<article>{img}'
-            f'<span class="kicker" style="margin-top:8px">{esc(a["seccion"])}</span>'
+            f'<span class="kicker" style="margin-top:8px">{esc(a["seccion"])}{" · 🎧 Audio" if a.get("audio") else ""}</span>'
             f'<h3 class="title {size}"><a href="{root}noticia/{a["slug"]}.html">{esc(a["titulo"])}</a></h3>'
             f'{sub}<p class="author">{esc(a["autor"])}</p></article>')
 
@@ -183,6 +209,10 @@ def home(arts):
             bloques += (f'<section class="block"><h2 class="section-title">{esc(s)} '
                         f'<a href="seccion/{slugify(s)}.html">Ver sección</a></h2>'
                         f'<div class="grid cols-4">{"".join(tarjeta(a, "") for a in de)}</div></section>')
+    con_audio = [a for a in arts if a.get("audio")][:4]
+    if con_audio:
+        bloques += ('<section class="block"><h2 class="section-title">Podcast</h2>'
+                    f'<div class="grid cols-4">{"".join(tarjeta(a, "") for a in con_audio)}</div></section>')
     ult = "".join(f'<li><a href="noticia/{a["slug"]}.html">{esc(a["titulo"])}</a></li>' for a in arts[:10])
     ultimas = f'<section class="block most-read"><h2 class="section-title">Lo más reciente</h2><ol>{ult}</ol></section>'
     return pagina("Noticias de Sevilla, Andalucía y España", hero + bloques + ultimas)
@@ -200,10 +230,12 @@ def pagina_noticia(a):
     parrafos = "".join(f"<p>{esc(p).replace(chr(10), '<br>')}</p>" for p in re.split(r"\n\s*\n", a["cuerpo"]) if p.strip())
     cred = f'<figcaption>{esc(a["credito"])}</figcaption>' if a["credito"] else ""
     fecha = a["fecha"].strftime("%d/%m/%Y")
+    audio = (f'<div class="audio-box"><span class="kicker">Escucha esta noticia</span>'
+             f'<audio controls preload="none" src="../audio/{a["audio"]}"></audio></div>') if a.get("audio") else ""
     cuerpo = (f'<article class="block" style="max-width:760px;margin:0 auto"><span class="kicker">'
               f'<a href="../seccion/{slugify(a["seccion"])}.html">{esc(a["seccion"])}</a></span>'
               f'<h1 class="title xl">{esc(a["titulo"])}</h1><p class="sub">{esc(a["entradilla"])}</p>'
-              f'<p class="author">{esc(a["autor"])} · {fecha}</p><div style="margin:16px 0">{figura(a, "../")}{cred}</div>'
+              f'<p class="author">{esc(a["autor"])} · {fecha}</p><div style="margin:16px 0">{figura(a, "../")}{cred}</div>{audio}'
               f'<div style="font-family:var(--serif);font-size:18px;line-height:1.6;display:grid;gap:14px">{parrafos}</div></article>')
     return pagina(a["titulo"], cuerpo, "../", a["seccion"])
 
@@ -220,7 +252,7 @@ def main():
         for var in ("GOOGLE_SERVICE_ACCOUNT_JSON", "DRIVE_FOLDER_ID"):
             if not os.environ.get(var, "").strip():
                 sys.exit(f"ERROR: el secreto {var} está vacío o no existe. Créalo en Settings > Secrets and variables > Actions > Repository secrets.")
-    docs, imgs = leer_local(args.local) if args.local else leer_drive(os.environ["DRIVE_FOLDER_ID"].strip())
+    docs, medios = leer_local(args.local) if args.local else leer_drive(os.environ["DRIVE_FOLDER_ID"].strip())
 
     arts, errores, slugs = [], [], set()
     for persona, nombre, texto, mod in docs:
@@ -234,20 +266,39 @@ def main():
         while slug in slugs:
             slug, n = f"{base}-{n}", n + 1
         slugs.add(slug); a["slug"] = slug
-        a["imagen"] = ""
+        a["imagen"] = a["audio"] = ""
+
+        def buscar(nombre):
+            return medios.get((persona, nombre)) or medios.get(("*", nombre))
+
         if a["imagen_nombre"]:
-            data = imgs.get((persona, a["imagen_nombre"]))
-            if data is None:
-                errores.append(f"[{persona}] «{nombre}»: imagen '{a['imagen_nombre']}' no encontrada en tu carpeta (se publica sin imagen)")
+            m, ext = buscar(a["imagen_nombre"]), Path(a["imagen_nombre"]).suffix.lower()
+            if m is None:
+                errores.append(f"[{persona}] «{nombre}»: imagen '{a['imagen_nombre']}' no encontrada en tu carpeta ni en Insumos (se publica sin imagen)")
+            elif ext not in IMG_EXT:
+                errores.append(f"[{persona}] «{nombre}»: la imagen debe ser JPG, PNG o WEBP (se publica sin imagen)")
+            elif m[0] > MAX_IMG:
+                errores.append(f"[{persona}] «{nombre}»: la imagen pesa más de 2 MB (se publica sin imagen)")
             else:
-                a["imagen"] = f"{slug}{Path(a['imagen_nombre']).suffix.lower()}"
-                a["_bytes"] = data
+                a["imagen"] = f"{slug}{ext}"
+                a["_img"] = m[1]
+        if a["audio_nombre"]:
+            m, ext = buscar(a["audio_nombre"]), Path(a["audio_nombre"]).suffix.lower()
+            if m is None:
+                errores.append(f"[{persona}] «{nombre}»: audio '{a['audio_nombre']}' no encontrado en tu carpeta ni en Insumos (se publica sin audio)")
+            elif ext not in AUDIO_EXT:
+                errores.append(f"[{persona}] «{nombre}»: el audio debe ser MP3, M4A, WAV u OGG (se publica sin audio)")
+            elif m[0] > MAX_AUDIO:
+                errores.append(f"[{persona}] «{nombre}»: el audio pesa más de 25 MB (se publica sin audio)")
+            else:
+                a["audio"] = f"{slug}{ext}"
+                a["_audio"] = m[1]
         arts.append(a)
     arts.sort(key=lambda a: a["fecha"], reverse=True)
 
     if OUT.exists():
         shutil.rmtree(OUT)
-    (OUT / "noticia").mkdir(parents=True); (OUT / "seccion").mkdir(); (OUT / "img").mkdir()
+    (OUT / "noticia").mkdir(parents=True); (OUT / "seccion").mkdir(); (OUT / "img").mkdir(); (OUT / "audio").mkdir()
     for f in ("styles.css", "script.js"):
         shutil.copy(ROOT / f, OUT / f)
     (OUT / ".nojekyll").write_text("")
@@ -257,7 +308,9 @@ def main():
     for a in arts:
         (OUT / "noticia" / f"{a['slug']}.html").write_text(pagina_noticia(a), encoding="utf-8")
         if a["imagen"]:
-            (OUT / "img" / a["imagen"]).write_bytes(a["_bytes"])
+            (OUT / "img" / a["imagen"]).write_bytes(a["_img"]())
+        if a["audio"]:
+            (OUT / "audio" / a["audio"]).write_bytes(a["_audio"]())
 
     print(f"Publicadas: {len(arts)} noticias")
     informe = "Informe de errores:\n" + "\n".join(f"  - {e}" for e in errores) if errores else "Sin errores."

@@ -10,7 +10,10 @@ La web se regenera sola cada 15 minutos. No hay que avisar a nadie ni tocar cód
 3. **La cabecera va arriba, una línea por campo, seguida de una línea con `---`.** Debajo de `---` va el texto de la noticia (párrafos separados por una línea en blanco).
 4. **`Publicar: si` para que salga.** Con `no` (o sin el campo) queda como borrador y no se ve en la web.
 5. **La sección debe ser una de la lista:** Mesa del Congreso, Presidente de Gobierno, Ministros, Diputados oficialistas, Diputados de oposición, Otro grupo de oposición. Elige el grupo al que pertenece tu rol.
-6. **La imagen va en tu misma carpeta**, en JPG o PNG, y `Imagen:` lleva su nombre exacto (por ejemplo `puente.jpg`). Máximo 2 MB, formato horizontal. Usa solo fotos propias o libres de derechos, y pon el crédito en `Credito:`.
+6. **Imágenes y audios (podcast).** Súbelos a tu carpeta, junto al Doc, o a la carpeta compartida `Insumos` (subcarpetas `Imagenes` y `Audios`) si los usará más de una persona. En el Doc pones el nombre exacto del archivo en `Imagen:` o `Audio:`; se busca primero en tu carpeta y después en `Insumos`.
+   - Imagen: JPG, PNG o WEBP, máximo 2 MB, horizontal. Solo fotos propias o libres de derechos, con crédito en `Credito:`.
+   - Audio: MP3, M4A, WAV u OGG, máximo 25 MB (un episodio corto, de 10 a 20 minutos en MP3 128 kbps, cabe de sobra). Saldrá un reproductor en la noticia y un bloque «Podcast» en la portada. Pon la transcripción o un resumen como texto de la noticia.
+   - Dos archivos con el mismo nombre en distintas carpetas son una fuente de errores: usa nombres únicos, por ejemplo `ministros-puente-01.jpg`.
 7. **Para corregir, edita el mismo Doc.** No hagas copias; se actualiza en el siguiente ciclo. Para retirar una noticia pon `Publicar: no`.
 8. **No muevas ni renombres las carpetas de otras personas** ni la carpeta raíz.
 9. **Si algo está mal escrito, la noticia no rompe la web:** se omite y aparece en el informe de errores (pestaña *Actions* del repositorio, paso "Informe").
@@ -24,6 +27,7 @@ Autor: Nombre Apellido
 Entradilla: Una o dos frases que resumen la noticia.
 Imagen: foto.jpg
 Credito: Foto: Nombre
+Audio: episodio.mp3
 Destacada: no
 Publicar: si
 ---
@@ -32,7 +36,7 @@ Primer párrafo del texto.
 Segundo párrafo del texto.
 ```
 
-Campos obligatorios: `Titulo`, `Seccion`, `Publicar`. El resto es opcional.
+Campos obligatorios: `Titulo`, `Seccion`, `Publicar`. El resto es opcional (si no usas `Audio`, borra esa línea o déjala vacía).
 `Destacada: si` la coloca en la apertura de la portada (si hay varias, gana la más reciente).
 
 ## Qué hace el sistema (para el equipo técnico)
