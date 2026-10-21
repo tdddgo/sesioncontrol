@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mini brandbook — XYZ Sevilla</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="styles.css">
+<style>
+  body { background: var(--cal); }
+  .bb { max-width: 1200px; margin: 0 auto; padding: 0 22px; }
+  .bb section { padding: 72px 0; border-top: 1px solid var(--line); }
+  .bb section:first-of-type { border-top: 0; }
+  .num { font-family: var(--display); font-weight: 600; color: var(--albero-deep); font-size: 20px; font-variation-settings: "SOFT" 100; }
+  .bb h2 { font-family: var(--display); font-weight: 520; font-size: 46px; line-height: 1.08; color: var(--navy); letter-spacing: -.015em; font-variation-settings: "SOFT" 100; margin: 6px 0 14px; }
+  .bb h3 { font-family: var(--display); font-weight: 560; font-size: 22px; color: var(--navy); font-variation-settings: "SOFT" 100; margin-bottom: 6px; }
+  .lead { font-family: var(--serif); font-size: 20px; line-height: 1.55; max-width: 62ch; color: #3d4550; }
+  .small { font-size: 14px; color: var(--muted); }
+  .row { display: grid; gap: 22px; margin-top: 34px; }
+  .r2 { grid-template-columns: repeat(2, 1fr); } .r3 { grid-template-columns: repeat(3, 1fr); } .r4 { grid-template-columns: repeat(4, 1fr); }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 26px; }
+  /* Portada */
+  .cover { padding: 84px 0 70px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+  .cover .logo-xyz { font-size: 150px; } .cover .logo-city { font-size: 20px; margin-top: 18px; }
+  .cover .logo-city::before, .cover .logo-city::after { width: 56px; height: 9px; border-radius: 5px; }
+  .cover .logo { align-items: flex-start; } .cover .logo-city { padding-left: 0; }
+  .tag { font-family: var(--display); font-style: italic; font-weight: 400; font-size: 30px; color: var(--navy); margin-top: 28px; font-variation-settings: "SOFT" 100; }
+  .collage { display: grid; grid-template-columns: 1fr 1.4fr; grid-template-rows: 150px 190px 130px; gap: 10px; }
+  .collage div { border-radius: 14px; }
+  .c1 { background: var(--albero); } .c2 { background: linear-gradient(135deg, #f9dfbf, #efb77d); grid-column: 2; }
+  .c3 { background: linear-gradient(160deg, #e9b476, #c98a4c); } .c4 { background: var(--albero-soft); grid-column: 2; grid-row: 2; }
+  .c5 { background: var(--navy); } .c6 { background: linear-gradient(135deg, #f7caa0, #e49b55); }
+  /* Logo */
+  .logo-tile { border-radius: var(--radius-lg); min-height: 230px; display: grid; place-items: center; padding: 30px; }
+  .logo-tile .logo-xyz { font-size: 78px; } .logo-tile .logo-city { font-size: 12px; }
+  .on-navy { background: var(--navy); } .on-navy .logo { color: #fff; }
+  .on-albero { background: var(--albero); } .on-albero .logo-city::before, .on-albero .logo-city::after { background: var(--navy); }
+  .on-cal { background: #fff; border: 1px solid var(--line); }
+  .mono { font-family: var(--display); font-weight: 600; font-size: 96px; line-height: 1; color: var(--navy); font-variation-settings: "SOFT" 100, "opsz" 144; display: grid; place-items: center; width: 150px; height: 150px; border-radius: 34px; background: var(--albero); }
+  /* Color */
+  .sw { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line); background: #fff; }
+  .sw .chip { height: 130px; } .sw .t { padding: 16px 18px 18px; }
+  .sw b { font-family: var(--display); font-size: 20px; color: var(--navy); font-weight: 560; } .sw code { display: block; margin: 4px 0; font-size: 13px; color: var(--text); }
+  .prop { display: flex; height: 38px; border-radius: 19px; overflow: hidden; margin-top: 30px; } .prop span { display: grid; place-items: center; font-size: 12px; font-weight: 700; }
+  /* Tipografía */
+  .spec { font-size: 76px; line-height: 1; color: var(--navy); }
+  .f-display { font-family: var(--display); font-weight: 520; font-variation-settings: "SOFT" 100; letter-spacing: -.015em; }
+  .f-serif { font-family: var(--serif); } .f-sans { font-family: var(--sans); font-weight: 500; }
+  table.scale { width: 100%; border-collapse: collapse; margin-top: 8px; } table.scale td { padding: 12px 0; border-bottom: 1px solid var(--line); vertical-align: baseline; }
+  table.scale td:first-child { color: var(--muted); font-size: 13px; width: 28%; }
+  /* Componentes */
+  .pill { display: inline-block; padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+  .nb { border-radius: 18px; padding: 22px; min-height: 190px; display: flex; flex-direction: column; justify-content: space-between; }
+  .nb .n { font-family: var(--display); font-size: 54px; font-weight: 560; line-height: 1; font-variation-settings: "SOFT" 100; }
+  .nb p { font-size: 14px; font-weight: 600; }
+  .ph-demo { aspect-ratio: 16/9; border-radius: var(--radius-lg); background: linear-gradient(135deg, #f9dfbf, #efb77d); }
+  .dos { border-radius: var(--radius-lg); padding: 22px; border: 1px solid var(--line); background: #fff; }
+  .dos.si { border-top: 6px solid var(--albero); } .dos.no { border-top: 6px solid #c2371c; }
+  .dos li { padding: 8px 0; border-bottom: 1px solid var(--line); font-family: var(--serif); font-size: 17px; } .dos li:last-child { border: 0; }
+  .ex-t { font-family: var(--display); font-weight: 540; font-size: 22px; line-height: 1.2; color: var(--navy); font-variation-settings: "SOFT" 100; }
+  footer.bbf { background: var(--navy); color: #c6d0dc; padding: 40px 0; margin-top: 30px; text-align: center; font-size: 14px; }
+  @media (max-width: 900px) { .cover, .r2, .r3, .r4 { grid-template-columns: 1fr; } .cover .logo-xyz { font-size: 96px; } .bb h2 { font-size: 36px; } .spec { font-size: 54px; } }
+</style>
+</head>
+<body>
+<div class="bb">
+
+<section class="cover">
+  <div>
+    <p class="kicker">Mini brandbook · versión 1.0</p>
+    <a class="logo" href="index.html" aria-label="XYZ Sevilla"><span class="logo-xyz">XYZ</span><span class="logo-city">Sevilla</span></a>
+    <p class="tag">Noticias con la luz de Sevilla.</p>
+    <p class="lead" style="margin-top:22px">Guía rápida de identidad para que todo lo que publiquemos —titulares, fotos, presentaciones— se vea y suene como un mismo medio.</p>
+  </div>
+  <div class="collage" aria-hidden="true"><div class="c1"></div><div class="c2"></div><div class="c3"></div><div class="c4"></div><div class="c5"></div><div class="c6"></div></div>
+</section>
+
+<section>
+  <span class="num">01</span><h2>Esencia</h2>
+  <p class="lead">XYZ Sevilla es un periódico digital que cuenta la actualidad con rigor, pero sin dureza. Su identidad parte de dos colores de la ciudad: el <b>albero</b> de la Maestranza y el azul profundo del <b>Guadalquivir</b>.</p>
+  <div class="row r3">
+    <div class="card"><h3>Cálida</h3><p>Colores de tierra y luz, formas redondeadas y una tipografía suave. Se lee con comodidad, no se impone.</p></div>
+    <div class="card"><h3>Clara</h3><p>Mucho aire, jerarquía evidente y un solo color protagonista por pieza. Lo importante se ve primero.</p></div>
+    <div class="card"><h3>Rigurosa</h3><p>Siempre con fuente, fecha y autoría. La calidez es de estilo; la información es seria.</p></div>
+  </div>
+</section>
+
+<section>
+  <span class="num">02</span><h2>Logotipo</h2>
+  <p class="lead">«XYZ» en serif suave y grande; «SEVILLA» pequeño, con dos bloques albero a los lados que recuerdan al collage de la plaza.</p>
+  <div class="row r3">
+    <div class="logo-tile on-cal"><div class="logo"><span class="logo-xyz">XYZ</span><span class="logo-city">Sevilla</span></div></div>
+    <div class="logo-tile on-navy"><div class="logo"><span class="logo-xyz">XYZ</span><span class="logo-city">Sevilla</span></div></div>
+    <div class="logo-tile on-albero"><div class="logo" style="color:var(--navy)"><span class="logo-xyz">XYZ</span><span class="logo-city">Sevilla</span></div></div>
+  </div>
+  <div class="row r2">
+    <div class="card" style="display:flex;gap:26px;align-items:center"><div class="mono">X</div><div><h3>Monograma</h3><p class="small">Para avatar, favicon y redes. «X» en Fraunces sobre albero, con esquinas muy redondeadas.</p></div></div>
+    <div class="card"><h3>Reglas de uso</h3><ul class="small" style="line-height:1.9;list-style:disc;padding-left:18px"><li>Azul Guadalquivir sobre claro; blanco sobre azul; azul sobre albero.</li><li>Espacio libre alrededor igual a la altura de la «X».</li><li>Ancho mínimo: 90 px (el logo completo).</li><li>No estirar, no girar, no añadir sombras ni otros colores.</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <span class="num">03</span><h2>Color</h2>
+  <p class="lead">Un azul para dar solidez, un albero para dar calor y una crema como papel. El albero es la firma: úsalo en bloques, números y detalles, no en párrafos.</p>
+  <div class="row r4">
+    <div class="sw"><div class="chip" style="background:#0f2a47"></div><div class="t"><b>Guadalquivir</b><code>#0F2A47</code><span class="small">Logo, titulares, pie, botones</span></div></div>
+    <div class="sw"><div class="chip" style="background:#f2a154"></div><div class="t"><b>Albero</b><code>#F2A154</code><span class="small">Color firma: bloques, botón principal</span></div></div>
+    <div class="sw"><div class="chip" style="background:#d9772a"></div><div class="t"><b>Albero intenso</b><code>#D9772A</code><span class="small">Números grandes y detalles</span></div></div>
+    <div class="sw"><div class="chip" style="background:#fbe3c8"></div><div class="t"><b>Albero claro</b><code>#FBE3C8</code><span class="small">Fondos suaves, cajas de audio</span></div></div>
+  </div>
+  <div class="row r4" style="margin-top:22px">
+    <div class="sw"><div class="chip" style="background:#faf6ee"></div><div class="t"><b>Cal</b><code>#FAF6EE</code><span class="small">Papel de fondo</span></div></div>
+    <div class="sw"><div class="chip" style="background:#b8531c"></div><div class="t"><b>Albero oscuro</b><code>#B8531C</code><span class="small">Texto pequeño de acento (cumple contraste AA)</span></div></div>
+    <div class="sw"><div class="chip" style="background:#16202d"></div><div class="t"><b>Tinta</b><code>#16202D</code><span class="small">Texto sobre fondos claros</span></div></div>
+    <div class="sw"><div class="chip" style="background:#c2371c"></div><div class="t"><b>Directo</b><code>#C2371C</code><span class="small">Solo para «En directo» y alertas</span></div></div>
+  </div>
+  <div class="prop" aria-label="Proporción de uso"><span style="flex:55;background:#faf6ee;color:#6c7480;border:1px solid #e9dfcf;border-radius:19px 0 0 19px">Cal 55 %</span><span style="flex:25;background:#0f2a47;color:#fff">Azul 25 %</span><span style="flex:15;background:#f2a154;color:#0f2a47">Albero 15 %</span><span style="flex:5;background:#d9772a;color:#fff">5</span></div>
+  <p class="small" style="margin-top:10px">Texto blanco solo sobre azul o albero intenso. Texto azul sobre albero o albero claro. Nunca texto albero sobre blanco por debajo de 24 px.</p>
+</section>
+
+<section>
+  <span class="num">04</span><h2>Tipografía</h2>
+  <p class="lead">Tres voces. La serif suave de los titulares es el cambio principal: pesos medios (500–600), formas redondeadas y nunca en negrita pesada.</p>
+  <div class="row r3">
+    <div class="card"><p class="kicker">Titulares y logo</p><div class="spec f-display">Aa</div><h3 style="margin-top:12px">Fraunces</h3><p class="small">Serif «suave» (eje SOFT 100). Pesos 500–600. Con tamaño grande, interletrado ligeramente cerrado.</p></div>
+    <div class="card"><p class="kicker">Lectura</p><div class="spec f-serif">Aa</div><h3 style="margin-top:12px">Source Serif 4</h3><p class="small">Entradillas y cuerpo de la noticia. 18–20 px con interlineado amplio (1,6–1,7).</p></div>
+    <div class="card"><p class="kicker">Interfaz y etiquetas</p><div class="spec f-sans">Aa</div><h3 style="margin-top:12px">DM Sans</h3><p class="small">Menú, firmas, etiquetas de sección y botones. Mayúsculas pequeñas con tracking solo en etiquetas.</p></div>
+  </div>
+  <div class="card" style="margin-top:22px">
+    <table class="scale">
+      <tr><td>Titular de apertura · 44 px</td><td><span class="f-display" style="font-size:44px;line-height:1.08;color:var(--navy)">El puente de Triana estrena luz nueva</span></td></tr>
+      <tr><td>Titular destacado · 27 px</td><td><span class="f-display" style="font-size:27px;color:var(--navy)">La ciudad se prepara para las elecciones del 29N</span></td></tr>
+      <tr><td>Titular de tarjeta · 20 px</td><td><span class="f-display" style="font-size:20.5px;color:var(--navy)">Aprobado el decreto de ayudas a la vivienda</span></td></tr>
+      <tr><td>Entradilla · 17 px</td><td><span class="f-serif" style="font-size:17px">El Ayuntamiento instala nuevas luces para mejorar la seguridad en el barrio.</span></td></tr>
+      <tr><td>Etiqueta · 11 px</td><td><span class="kicker" style="margin:0">Mesa del Congreso</span></td></tr>
+    </table>
+    <p class="small" style="margin-top:14px"><b>Reglas:</b> titulares en minúscula normal (nunca todo en mayúsculas); máximo tres líneas; un solo color; la cursiva de Fraunces puede servir para una palabra de énfasis o el lema.</p>
+  </div>
+</section>
+
+<section>
+  <span class="num">05</span><h2>Forma y componentes</h2>
+  <p class="lead">Bloques rectangulares de esquinas redondeadas, como piezas de un collage, y números grandes para ordenar. Todo se apoya en una trama limpia y mucho aire.</p>
+  <div class="row r4">
+    <div class="nb" style="background:var(--albero);color:var(--navy)"><span class="n">01</span><p>Bloque albero: lo principal</p></div>
+    <div class="nb" style="background:#fff;border:1px solid var(--line);color:var(--navy)"><span class="n">02</span><p>Bloque blanco: contenido</p></div>
+    <div class="nb" style="background:var(--navy);color:#fff"><span class="n" style="color:var(--albero)">03</span><p>Bloque azul: contraste</p></div>
+    <div class="nb" style="background:var(--albero-soft);color:var(--navy)"><span class="n">04</span><p>Albero claro: apoyo</p></div>
+  </div>
+  <div class="row r3">
+    <div class="card"><div class="ph-demo"></div><span class="kicker" style="margin-top:12px">Ministros</span><div class="ex-t">Decreto que amplía la protección de la Seguridad Social</div><p class="sub" style="margin-top:8px;font-size:15px">Tarjeta tipo: foto con esquinas redondeadas, etiqueta, titular, entradilla y firma.</p><p class="author">Redacción XYZ</p></div>
+    <div class="card"><h3>Botones y etiquetas</h3><p style="margin:14px 0"><a class="btn primary" href="#">Suscríbete</a> &nbsp; <a class="btn" href="#">Iniciar sesión</a></p><p><span class="pill" style="background:var(--albero);color:var(--navy)">Directo</span> <span class="pill" style="background:var(--navy);color:#fff">Podcast</span> <span class="pill" style="background:var(--albero-soft);color:var(--accent)">Opinión</span></p><p class="small" style="margin-top:14px">Botones en forma de píldora. Uno principal (albero) por pantalla.</p></div>
+    <div class="card"><h3>Detalles de firma</h3><p class="small" style="line-height:1.8">• Bloque albero sobre el filete de cada sección.<br>• Números 01, 02, 03 en «Lo más reciente».<br>• Dos bloques a los lados del nombre de la ciudad.<br>• Filete azul fino bajo el logo y navegación fija.</p></div>
+  </div>
+</section>
+
+<section>
+  <span class="num">06</span><h2>Fotografía</h2>
+  <p class="lead">Luz cálida, piedra y albero. Preferimos arquitectura y gente de la ciudad antes que imágenes de archivo genéricas.</p>
+  <div class="row r3">
+    <div class="card"><h3>Qué buscamos</h3><p class="small" style="line-height:1.8">Plaza de España, Maestranza, patios, azulejos y calle. Encuadres limpios, horizontales, con un único motivo claro. Colores cálidos, sin filtros agresivos.</p></div>
+    <div class="card"><h3>Collage de bloques</h3><p class="small" style="line-height:1.8">Para portadas y redes: combina 2–4 fotos con bloques lisos de albero, crema o azul. Esquinas redondeadas y 8–12 px de separación.</p></div>
+    <div class="card"><h3>Derechos</h3><p class="small" style="line-height:1.8">Solo fotos propias o con licencia libre. Siempre con crédito en el campo <code>Credito:</code> del Doc. Máximo 2 MB por imagen.</p></div>
+  </div>
+</section>
+
+<section>
+  <span class="num">07</span><h2>Voz y tono</h2>
+  <p class="lead">Hablamos con claridad y cercanía; el titular informa, no grita. Frases cortas, verbos concretos, sin adjetivos de más.</p>
+  <div class="row r2">
+    <div class="dos si"><h3>Sí</h3><ul><li>El Congreso confirma el calendario electoral</li><li>Sánchez anuncia ayudas para los municipios de la DANA</li><li>Qué cambia con el nuevo decreto de la Seguridad Social</li></ul></div>
+    <div class="dos no"><h3>No</h3><ul><li>¡¡ESCÁNDALO EN EL CONGRESO!!</li><li>Increíble: lo que nadie te cuenta del decreto</li><li>El Gobierno arrasa con una medida histórica</li></ul></div>
+  </div>
+</section>
+
+<section>
+  <span class="num">08</span><h2>Cómo se aplica en la web</h2>
+  <p class="lead">Toda la identidad vive en las variables del inicio de <code>styles.css</code> (color, tipografía y forma). Para cambiar un color o una fuente de todo el sitio basta con editar esas líneas; el sitio se actualiza en el siguiente ciclo de publicación.</p>
+  <div class="row r3">
+    <div class="card"><h3>Para redactores</h3><p class="small">No tocan nada: el estilo se aplica solo. Solo cuidan los titulares y los créditos de las fotos.</p></div>
+    <div class="card"><h3>Para diseño</h3><p class="small">Presentaciones, redes y piezas gráficas: mismas dos tipografías, la paleta de arriba y bloques redondeados.</p></div>
+    <div class="card"><h3>Para el equipo técnico</h3><p class="small">Variables <code>--navy</code>, <code>--albero</code>, <code>--cal</code>, <code>--display</code>, <code>--serif</code> y <code>--sans</code> en <code>styles.css</code>.</p></div>
+  </div>
+</section>
+
+</div>
+<footer class="bbf">XYZ Sevilla · Mini brandbook v1.0 · <a href="index.html" style="text-decoration:underline">Volver a la portada</a></footer>
+</body>
+</html>
