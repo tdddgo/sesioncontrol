@@ -12,8 +12,8 @@
   .bb section { padding: 72px 0; border-top: 1px solid var(--line); }
   .bb section:first-of-type { border-top: 0; }
   .num { font-family: var(--display); font-weight: 600; color: var(--albero-deep); font-size: 20px; }
-  .bb h2 { font-family: var(--display); font-weight: 600; font-size: 46px; line-height: 1.05; color: var(--navy); letter-spacing: -.035em; margin: 6px 0 14px; }
-  .bb h3 { font-family: var(--display); font-weight: 560; font-size: 22px; color: var(--navy); margin-bottom: 6px; }
+  .bb h2 { font-family: var(--display); font-weight: 500; font-size: 46px; line-height: 1.05; color: var(--navy); letter-spacing: -.035em; margin: 6px 0 14px; }
+  .bb h3 { font-family: var(--display); font-weight: 500; font-size: 22px; color: var(--navy); margin-bottom: 6px; }
   .lead { font-family: var(--serif); font-size: 20px; line-height: 1.55; max-width: 62ch; color: #3d4550; }
   .small { font-size: 14px; color: var(--muted); }
   .row { display: grid; gap: 22px; margin-top: 34px; }
@@ -36,28 +36,28 @@
   .on-navy { background: var(--navy); } .on-navy .logo { color: #fff; }
   .on-albero { background: var(--albero); } .on-albero .logo-city::before, .on-albero .logo-city::after { background: var(--navy); }
   .on-cal { background: #fff; border: 1px solid var(--line); }
-  .mono { font-family: var(--display); font-weight: 600; font-size: 96px; line-height: 1; color: var(--navy); display: grid; place-items: center; width: 150px; height: 150px; border-radius: 34px; background: var(--albero); }
+  .mono { font-family: var(--display); font-weight: 500; font-size: 96px; line-height: 1; color: var(--navy); display: grid; place-items: center; width: 150px; height: 150px; border-radius: 34px; background: var(--albero); }
   /* Color */
   .sw { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line); background: #fff; }
   .sw .chip { height: 130px; } .sw .t { padding: 16px 18px 18px; }
-  .sw b { font-family: var(--display); font-size: 20px; color: var(--navy); font-weight: 560; } .sw code { display: block; margin: 4px 0; font-size: 13px; color: var(--text); }
+  .sw b { font-family: var(--display); font-size: 20px; color: var(--navy); font-weight: 500; } .sw code { display: block; margin: 4px 0; font-size: 13px; color: var(--text); }
   .prop { display: flex; height: 38px; border-radius: 19px; overflow: hidden; margin-top: 30px; } .prop span { display: grid; place-items: center; font-size: 12px; font-weight: 700; }
   /* Tipografía */
   .spec { font-size: 76px; line-height: 1; color: var(--navy); }
-  .f-display { font-family: var(--display); font-weight: 600; letter-spacing: -.035em; }
+  .f-display { font-family: var(--display); font-weight: 500; letter-spacing: -.035em; }
   .f-serif { font-family: var(--serif); } .f-sans { font-family: var(--sans); font-weight: 500; }
   table.scale { width: 100%; border-collapse: collapse; margin-top: 8px; } table.scale td { padding: 12px 0; border-bottom: 1px solid var(--line); vertical-align: baseline; }
   table.scale td:first-child { color: var(--muted); font-size: 13px; width: 28%; }
   /* Componentes */
   .pill { display: inline-block; padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; }
   .nb { border-radius: 18px; padding: 22px; min-height: 190px; display: flex; flex-direction: column; justify-content: space-between; }
-  .nb .n { font-family: var(--display); font-size: 54px; font-weight: 560; line-height: 1; }
+  .nb .n { font-family: var(--display); font-size: 54px; font-weight: 500; line-height: 1; }
   .nb p { font-size: 14px; font-weight: 600; }
   .ph-demo { aspect-ratio: 16/9; border-radius: var(--radius-lg); background: linear-gradient(135deg, #f9dfbf, #efb77d); }
   .dos { border-radius: var(--radius-lg); padding: 22px; border: 1px solid var(--line); background: #fff; }
   .dos.si { border-top: 6px solid var(--albero); } .dos.no { border-top: 6px solid #c2371c; }
   .dos li { padding: 8px 0; border-bottom: 1px solid var(--line); font-family: var(--serif); font-size: 17px; } .dos li:last-child { border: 0; }
-  .ex-t { font-family: var(--display); font-weight: 600; font-size: 22px; line-height: 1.15; letter-spacing: -.025em; color: var(--navy); }
+  .ex-t { font-family: var(--display); font-weight: 500; font-size: 22px; line-height: 1.15; letter-spacing: -.025em; color: var(--navy); }
   footer.bbf { background: var(--navy); color: #c6d0dc; padding: 40px 0; margin-top: 30px; text-align: center; font-size: 14px; }
   @media (max-width: 900px) { .cover, .r2, .r3, .r4 { grid-template-columns: 1fr; } .cover .logo-xyz { font-size: 96px; } .bb h2 { font-size: 36px; } .spec { font-size: 54px; } }
 </style>
@@ -120,9 +120,9 @@
 
 <section>
   <span class="num">04</span><h2>Tipografía</h2>
-  <p class="lead">Dos voces: una sans moderna y compacta (Inter Tight) para titulares, logo e interfaz, y una serif de lectura (Source Serif 4) para entradillas y cuerpo. Titulares siempre en peso 600 con interletrado cerrado.</p>
+  <p class="lead">Dos voces: una sans moderna y compacta (Inter Tight) para titulares, logo e interfaz, y una serif de lectura (Source Serif 4) para entradillas y cuerpo. Titulares siempre en peso 500 con interletrado cerrado.</p>
   <div class="row r3">
-    <div class="card"><p class="kicker">Titulares y logo</p><div class="spec f-display">Aa</div><h3 style="margin-top:12px">Inter Tight</h3><p class="small">Sans moderna y compacta. Peso 600 para titulares; interletrado cerrado (−2,5 % a −4,5 %) cuanto más grande el texto.</p></div>
+    <div class="card"><p class="kicker">Titulares y logo</p><div class="spec f-display">Aa</div><h3 style="margin-top:12px">Inter Tight</h3><p class="small">Sans moderna y compacta. Peso 500 para titulares; interletrado cerrado (−2,5 % a −4,5 %) cuanto más grande el texto.</p></div>
     <div class="card"><p class="kicker">Lectura</p><div class="spec f-serif">Aa</div><h3 style="margin-top:12px">Source Serif 4</h3><p class="small">Entradillas y cuerpo de la noticia. 18–20 px con interlineado amplio (1,6–1,7).</p></div>
     <div class="card"><p class="kicker">Interfaz y etiquetas</p><div class="spec f-sans">Aa</div><h3 style="margin-top:12px">Inter Tight (texto)</h3><p class="small">Menú, firmas, etiquetas y botones, en pesos 500–700. Mayúsculas pequeñas con tracking solo en etiquetas.</p></div>
   </div>
@@ -150,7 +150,7 @@
   <div class="row r3">
     <div class="card"><div class="ph-demo"></div><span class="kicker" style="margin-top:12px">Ministros</span><div class="ex-t">Decreto que amplía la protección de la Seguridad Social</div><p class="sub" style="margin-top:8px;font-size:15px">Tarjeta tipo: foto con esquinas redondeadas, etiqueta, titular, entradilla y firma.</p><p class="author">Redacción XYZ</p></div>
     <div class="card"><h3>Botones y etiquetas</h3><p style="margin:14px 0"><a class="btn primary" href="#">Suscríbete</a> &nbsp; <a class="btn" href="#">Iniciar sesión</a></p><p><span class="pill" style="background:var(--albero);color:var(--navy)">Directo</span> <span class="pill" style="background:var(--navy);color:#fff">Podcast</span> <span class="pill" style="background:var(--albero-soft);color:var(--accent)">Opinión</span></p><p class="small" style="margin-top:14px">Botones en forma de píldora. Uno principal (albero) por pantalla.</p></div>
-    <div class="card"><h3>Detalles de firma</h3><p class="small" style="line-height:1.8">• Bloque albero sobre el filete de cada sección.<br>• Números 01, 02, 03 en «Lo más reciente».<br>• Dos bloques a los lados del nombre de la ciudad.<br>• Filete azul fino bajo el logo y navegación fija.</p></div>
+    <div class="card"><h3>Detalles de firma</h3><p class="small" style="line-height:1.8">• Bloque albero sobre el filete de cada sección.<br>• Números 01, 02, 03 en «Lo más reciente».<br>• Dos bloques a los lados del nombre de la ciudad.<br>• Un icono de la ciudad en cada título de sección (nunca en lugar de una foto).<br>• Filete azul fino bajo el logo y navegación fija.</p></div>
   </div>
 </section>
 

@@ -183,8 +183,7 @@ def pagina(titulo, cuerpo, root="", activa=""):
 def figura(a, root, ratio=""):
     if a["imagen"]:
         return f'<figure class="ph {ratio}"><img src="{root}img/{a["imagen"]}" alt="{esc(a["titulo"])}" loading="lazy"></figure>'
-    ico = ICONOS.get(a["seccion"], "azulejo")
-    return f'<figure class="ph {ratio}"><span><img class="ph-ico" src="{root}icons/{ico}.svg" alt="" width="96" height="96"></span></figure>'
+    return f'<figure class="ph {ratio}"><span>{esc(a["seccion"])}</span></figure>'
 
 
 def tarjeta(a, root, size="md", con_img=True, ratio="r-4x3", entradilla=False):
@@ -240,7 +239,7 @@ def pagina_noticia(a):
     audio = (f'<div class="audio-box"><span class="kicker">Escucha esta noticia</span>'
              f'<audio controls preload="none" src="../audio/{a["audio"]}"></audio></div>') if a.get("audio") else ""
     cuerpo = (f'<article class="nota"><span class="kicker">'
-              f'<a href="../seccion/{slugify(a["seccion"])}.html">{esc(a["seccion"])}</a></span>'
+              f'<a href="../seccion/{slugify(a["seccion"])}.html"><img class="k-ico" src="../icons/{ICONOS.get(a["seccion"], "azulejo")}.svg" alt="" width="22" height="22">{esc(a["seccion"])}</a></span>'
               f'<h1 class="title xl">{esc(a["titulo"])}</h1><p class="sub">{esc(a["entradilla"])}</p>'
               f'<p class="author">{esc(a["autor"])} · {fecha}</p><div class="foto">{figura(a, "../")}{cred}</div>{audio}'
               f'<div class="cuerpo">{parrafos}</div></article>')

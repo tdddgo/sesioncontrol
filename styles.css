@@ -43,7 +43,6 @@ img { max-width: 100%; display: block; }
 .ph > span, .ph > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: grid; place-items: center; }
 .ph > img { transition: transform .6s ease; }
 article:hover .ph > img { transform: scale(1.035); }
-.ph-ico { width: 38%; max-width: 110px; height: auto; position: static; filter: drop-shadow(0 6px 10px rgba(15,42,71,.12)); }
 .r-4x3 { --ratio: 75%; }
 .r-1x1 { --ratio: 100%; }
 .r-3x4 { --ratio: 133%; }
@@ -66,7 +65,7 @@ article:hover .ph > img { transform: scale(1.035); }
 /* Logo: XYZ en serif suave, SEVILLA con dos bloques albero */
 .logo { display: flex; flex-direction: column; align-items: center; color: var(--navy); line-height: 1; }
 .logo:hover { text-decoration: none; }
-.logo-xyz { font-family: var(--display); font-size: 88px; font-weight: 600; letter-spacing: -.045em; line-height: .86; }
+.logo-xyz { font-family: var(--display); font-size: 88px; font-weight: 500; letter-spacing: -.045em; line-height: .86; }
 .logo-city { display: flex; align-items: center; gap: 14px; margin-top: 12px; font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: .5em; text-transform: uppercase; padding-left: .5em; }
 .logo-city::before, .logo-city::after { content: ""; width: 34px; height: 6px; border-radius: 3px; background: var(--albero); }
 
@@ -91,13 +90,13 @@ article:hover .ph > img { transform: scale(1.035); }
 /* ---------- Artículos ---------- */
 .kicker { font-family: var(--sans); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: 6px; display: block; }
 .kicker a:hover { text-decoration: none; color: var(--navy); }
-.title { font-family: var(--display); font-weight: 600; line-height: 1.1; letter-spacing: -.028em; text-wrap: balance; margin: 6px 0 8px; color: var(--navy); }
+.title { font-family: var(--display); font-weight: 500; line-height: 1.1; letter-spacing: -.028em; text-wrap: balance; margin: 6px 0 8px; color: var(--navy); }
 .title a { background-image: linear-gradient(var(--albero), var(--albero)); background-size: 0 3px; background-position: 0 92%; background-repeat: no-repeat; transition: background-size .25s ease; }
 .title a:hover { text-decoration: none; background-size: 100% 3px; }
-.title.xl { font-size: 46px; line-height: 1.04; font-weight: 600; letter-spacing: -.035em; }
-.title.lg { font-size: 28px; line-height: 1.08; font-weight: 600; letter-spacing: -.03em; }
-.title.md { font-size: 21px; line-height: 1.15; font-weight: 600; letter-spacing: -.022em; }
-.title.sm { font-size: 17px; line-height: 1.22; font-weight: 600; letter-spacing: -.015em; }
+.title.xl { font-size: 46px; line-height: 1.04; font-weight: 500; letter-spacing: -.035em; }
+.title.lg { font-size: 28px; line-height: 1.08; font-weight: 500; letter-spacing: -.03em; }
+.title.md { font-size: 21px; line-height: 1.15; font-weight: 500; letter-spacing: -.022em; }
+.title.sm { font-size: 17px; line-height: 1.22; font-weight: 500; letter-spacing: -.015em; }
 .sub { font-family: var(--serif); color: #4a525d; font-size: 16.5px; line-height: 1.5; margin-bottom: 8px; text-wrap: pretty; }
 .title.xl + .sub { font-size: 18.5px; }
 .author { font-size: 11.5px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
@@ -112,10 +111,11 @@ figcaption { font-size: 12px; color: var(--muted); margin-top: 6px; line-height:
 /* ---------- Rejillas ---------- */
 .block { padding: 36px 0; border-bottom: 1px solid var(--line); }
 .block:last-of-type { border-bottom: 0; }
-.section-title { position: relative; font-family: var(--display); font-size: 28px; font-weight: 600; letter-spacing: -.03em; color: var(--navy); border-top: 1px solid var(--navy); padding-top: 16px; margin-bottom: 22px; display: flex; justify-content: space-between; align-items: baseline; }
+.section-title { position: relative; font-family: var(--display); font-size: 28px; font-weight: 500; letter-spacing: -.03em; color: var(--navy); border-top: 1px solid var(--navy); padding-top: 16px; margin-bottom: 22px; display: flex; justify-content: space-between; align-items: baseline; }
 .section-title::before { content: ""; position: absolute; left: 0; top: -4px; width: 56px; height: 7px; border-radius: 4px; background: var(--albero); }
 .section-title .st { display: inline-flex; align-items: center; gap: 12px; }
 .st-ico { width: 34px; height: 34px; }
+.k-ico { display: inline-block; width: 22px; height: 22px; vertical-align: -6px; margin-right: 8px; }
 .section-title a { font-family: var(--sans); font-size: 11.5px; font-weight: 700; letter-spacing: .1em; color: var(--accent); text-transform: uppercase; }
 .grid { display: grid; gap: var(--gap); }
 .hero { grid-template-columns: 5fr 3fr 4fr; gap: 32px; }
@@ -136,12 +136,12 @@ figcaption { font-size: 12px; color: var(--muted); margin-top: 6px; line-height:
 /* Lo más leído: números grandes */
 .most-read ol { counter-reset: n; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 40px; }
 .most-read li { counter-increment: n; display: flex; gap: 16px; align-items: baseline; padding: 15px 0; border-bottom: 1px solid var(--line); font-family: var(--display); font-weight: 500; font-size: 17.5px; line-height: 1.3; letter-spacing: -.012em; color: var(--navy); }
-.most-read li::before { content: counter(n, decimal-leading-zero); font-weight: 600; font-size: 30px; letter-spacing: -.04em; line-height: 1; color: var(--albero-deep); min-width: 46px; }
+.most-read li::before { content: counter(n, decimal-leading-zero); font-weight: 500; font-size: 30px; letter-spacing: -.04em; line-height: 1; color: var(--albero-deep); min-width: 46px; }
 
 /* Ofertas */
 .offer { border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; background: var(--paper); }
 .offer .body { padding: 16px; }
-.price { font-family: var(--display); font-size: 24px; font-weight: 600; letter-spacing: -.02em; color: var(--navy); }
+.price { font-family: var(--display); font-size: 24px; font-weight: 500; letter-spacing: -.02em; color: var(--navy); }
 
 /* ---------- Página de noticia ---------- */
 .nota { max-width: 740px; margin: 0 auto; padding: 48px 0 60px; }
@@ -150,13 +150,13 @@ figcaption { font-size: 12px; color: var(--muted); margin-top: 6px; line-height:
 .nota .author { padding: 14px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-bottom: 26px; }
 .nota .foto { margin: 0 0 30px; }
 .nota .cuerpo { font-family: var(--serif); font-size: 20px; line-height: 1.72; color: #232a33; display: grid; gap: 20px; }
-.nota .cuerpo > p:first-child::first-letter { font-family: var(--display); font-weight: 600; float: left; font-size: 4.4em; line-height: .82; padding: 6px 12px 0 0; color: var(--albero-deep); }
+.nota .cuerpo > p:first-child::first-letter { font-family: var(--display); font-weight: 500; float: left; font-size: 4.4em; line-height: .82; padding: 6px 12px 0 0; color: var(--albero-deep); }
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--navy); color: #c6d0dc; margin-top: 60px; padding: 52px 0 28px; font-size: 13.5px; position: relative; }
 .site-footer::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 8px; background: linear-gradient(90deg, var(--albero) 0 18%, transparent 18% 20%, var(--albero-soft) 20% 30%, transparent 30% 32%, var(--albero-deep) 32% 40%, transparent 40%); }
 .site-footer .grid { grid-template-columns: 1.2fr 2fr; }
-.site-footer h4 { color: #fff; margin-bottom: 10px; font-family: var(--display); font-weight: 600; font-size: 28px; letter-spacing: -.04em; }
+.site-footer h4 { color: #fff; margin-bottom: 10px; font-family: var(--display); font-weight: 500; font-size: 28px; letter-spacing: -.04em; }
 .site-footer ul.links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 24px; }
 .site-footer a:hover { color: #fff; }
 .copy { border-top: 1px solid #243e5c; margin-top: 28px; padding-top: 16px; color: #8da0b6; }
