@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mini brandbook — XYZ Sevilla</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
 <link rel="stylesheet" href="styles.css">
 <style>
   body { background: var(--cal); }
   .bb { max-width: 1200px; margin: 0 auto; padding: 0 22px; }
   .bb section { padding: 72px 0; border-top: 1px solid var(--line); }
   .bb section:first-of-type { border-top: 0; }
-  .num { font-family: var(--display); font-weight: 600; color: var(--albero-deep); font-size: 20px; font-variation-settings: "SOFT" 100; }
-  .bb h2 { font-family: var(--display); font-weight: 520; font-size: 46px; line-height: 1.08; color: var(--navy); letter-spacing: -.015em; font-variation-settings: "SOFT" 100; margin: 6px 0 14px; }
-  .bb h3 { font-family: var(--display); font-weight: 560; font-size: 22px; color: var(--navy); font-variation-settings: "SOFT" 100; margin-bottom: 6px; }
+  .num { font-family: var(--display); font-weight: 600; color: var(--albero-deep); font-size: 20px; }
+  .bb h2 { font-family: var(--display); font-weight: 600; font-size: 46px; line-height: 1.05; color: var(--navy); letter-spacing: -.035em; margin: 6px 0 14px; }
+  .bb h3 { font-family: var(--display); font-weight: 560; font-size: 22px; color: var(--navy); margin-bottom: 6px; }
   .lead { font-family: var(--serif); font-size: 20px; line-height: 1.55; max-width: 62ch; color: #3d4550; }
   .small { font-size: 14px; color: var(--muted); }
   .row { display: grid; gap: 22px; margin-top: 34px; }
@@ -21,10 +21,10 @@
   .card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 26px; }
   /* Portada */
   .cover { padding: 84px 0 70px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
-  .cover .logo-xyz { font-size: 150px; } .cover .logo-city { font-size: 20px; margin-top: 18px; }
+  .cover .logo-xyz { font-size: 160px; } .cover .logo-city { font-size: 20px; margin-top: 18px; }
   .cover .logo-city::before, .cover .logo-city::after { width: 56px; height: 9px; border-radius: 5px; }
   .cover .logo { align-items: flex-start; } .cover .logo-city { padding-left: 0; }
-  .tag { font-family: var(--display); font-style: italic; font-weight: 400; font-size: 30px; color: var(--navy); margin-top: 28px; font-variation-settings: "SOFT" 100; }
+  .tag { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 28px; color: var(--navy); margin-top: 28px; }
   .collage { display: grid; grid-template-columns: 1fr 1.4fr; grid-template-rows: 150px 190px 130px; gap: 10px; }
   .collage div { border-radius: 14px; }
   .c1 { background: var(--albero); } .c2 { background: linear-gradient(135deg, #f9dfbf, #efb77d); grid-column: 2; }
@@ -36,7 +36,7 @@
   .on-navy { background: var(--navy); } .on-navy .logo { color: #fff; }
   .on-albero { background: var(--albero); } .on-albero .logo-city::before, .on-albero .logo-city::after { background: var(--navy); }
   .on-cal { background: #fff; border: 1px solid var(--line); }
-  .mono { font-family: var(--display); font-weight: 600; font-size: 96px; line-height: 1; color: var(--navy); font-variation-settings: "SOFT" 100, "opsz" 144; display: grid; place-items: center; width: 150px; height: 150px; border-radius: 34px; background: var(--albero); }
+  .mono { font-family: var(--display); font-weight: 600; font-size: 96px; line-height: 1; color: var(--navy); display: grid; place-items: center; width: 150px; height: 150px; border-radius: 34px; background: var(--albero); }
   /* Color */
   .sw { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--line); background: #fff; }
   .sw .chip { height: 130px; } .sw .t { padding: 16px 18px 18px; }
@@ -44,20 +44,20 @@
   .prop { display: flex; height: 38px; border-radius: 19px; overflow: hidden; margin-top: 30px; } .prop span { display: grid; place-items: center; font-size: 12px; font-weight: 700; }
   /* Tipografía */
   .spec { font-size: 76px; line-height: 1; color: var(--navy); }
-  .f-display { font-family: var(--display); font-weight: 520; font-variation-settings: "SOFT" 100; letter-spacing: -.015em; }
+  .f-display { font-family: var(--display); font-weight: 600; letter-spacing: -.035em; }
   .f-serif { font-family: var(--serif); } .f-sans { font-family: var(--sans); font-weight: 500; }
   table.scale { width: 100%; border-collapse: collapse; margin-top: 8px; } table.scale td { padding: 12px 0; border-bottom: 1px solid var(--line); vertical-align: baseline; }
   table.scale td:first-child { color: var(--muted); font-size: 13px; width: 28%; }
   /* Componentes */
   .pill { display: inline-block; padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 700; }
   .nb { border-radius: 18px; padding: 22px; min-height: 190px; display: flex; flex-direction: column; justify-content: space-between; }
-  .nb .n { font-family: var(--display); font-size: 54px; font-weight: 560; line-height: 1; font-variation-settings: "SOFT" 100; }
+  .nb .n { font-family: var(--display); font-size: 54px; font-weight: 560; line-height: 1; }
   .nb p { font-size: 14px; font-weight: 600; }
   .ph-demo { aspect-ratio: 16/9; border-radius: var(--radius-lg); background: linear-gradient(135deg, #f9dfbf, #efb77d); }
   .dos { border-radius: var(--radius-lg); padding: 22px; border: 1px solid var(--line); background: #fff; }
   .dos.si { border-top: 6px solid var(--albero); } .dos.no { border-top: 6px solid #c2371c; }
   .dos li { padding: 8px 0; border-bottom: 1px solid var(--line); font-family: var(--serif); font-size: 17px; } .dos li:last-child { border: 0; }
-  .ex-t { font-family: var(--display); font-weight: 540; font-size: 22px; line-height: 1.2; color: var(--navy); font-variation-settings: "SOFT" 100; }
+  .ex-t { font-family: var(--display); font-weight: 600; font-size: 22px; line-height: 1.15; letter-spacing: -.025em; color: var(--navy); }
   footer.bbf { background: var(--navy); color: #c6d0dc; padding: 40px 0; margin-top: 30px; text-align: center; font-size: 14px; }
   @media (max-width: 900px) { .cover, .r2, .r3, .r4 { grid-template-columns: 1fr; } .cover .logo-xyz { font-size: 96px; } .bb h2 { font-size: 36px; } .spec { font-size: 54px; } }
 </style>
@@ -87,14 +87,14 @@
 
 <section>
   <span class="num">02</span><h2>Logotipo</h2>
-  <p class="lead">«XYZ» en serif suave y grande; «SEVILLA» pequeño, con dos bloques albero a los lados que recuerdan al collage de la plaza.</p>
+  <p class="lead">«XYZ» en sans compacta y grande; «SEVILLA» pequeño, con dos bloques albero a los lados que recuerdan al collage de la plaza.</p>
   <div class="row r3">
     <div class="logo-tile on-cal"><div class="logo"><span class="logo-xyz">XYZ</span><span class="logo-city">Sevilla</span></div></div>
     <div class="logo-tile on-navy"><div class="logo"><span class="logo-xyz">XYZ</span><span class="logo-city">Sevilla</span></div></div>
     <div class="logo-tile on-albero"><div class="logo" style="color:var(--navy)"><span class="logo-xyz">XYZ</span><span class="logo-city">Sevilla</span></div></div>
   </div>
   <div class="row r2">
-    <div class="card" style="display:flex;gap:26px;align-items:center"><div class="mono">X</div><div><h3>Monograma</h3><p class="small">Para avatar, favicon y redes. «X» en Fraunces sobre albero, con esquinas muy redondeadas.</p></div></div>
+    <div class="card" style="display:flex;gap:26px;align-items:center"><div class="mono">X</div><div><h3>Monograma</h3><p class="small">Para avatar, favicon y redes. «X» en Inter Tight sobre albero, con esquinas muy redondeadas.</p></div></div>
     <div class="card"><h3>Reglas de uso</h3><ul class="small" style="line-height:1.9;list-style:disc;padding-left:18px"><li>Azul Guadalquivir sobre claro; blanco sobre azul; azul sobre albero.</li><li>Espacio libre alrededor igual a la altura de la «X».</li><li>Ancho mínimo: 90 px (el logo completo).</li><li>No estirar, no girar, no añadir sombras ni otros colores.</li></ul></div>
   </div>
 </section>
@@ -120,11 +120,11 @@
 
 <section>
   <span class="num">04</span><h2>Tipografía</h2>
-  <p class="lead">Tres voces. La serif suave de los titulares es el cambio principal: pesos medios (500–600), formas redondeadas y nunca en negrita pesada.</p>
+  <p class="lead">Dos voces: una sans moderna y compacta (Inter Tight) para titulares, logo e interfaz, y una serif de lectura (Source Serif 4) para entradillas y cuerpo. Titulares siempre en peso 600 con interletrado cerrado.</p>
   <div class="row r3">
-    <div class="card"><p class="kicker">Titulares y logo</p><div class="spec f-display">Aa</div><h3 style="margin-top:12px">Fraunces</h3><p class="small">Serif «suave» (eje SOFT 100). Pesos 500–600. Con tamaño grande, interletrado ligeramente cerrado.</p></div>
+    <div class="card"><p class="kicker">Titulares y logo</p><div class="spec f-display">Aa</div><h3 style="margin-top:12px">Inter Tight</h3><p class="small">Sans moderna y compacta. Peso 600 para titulares; interletrado cerrado (−2,5 % a −4,5 %) cuanto más grande el texto.</p></div>
     <div class="card"><p class="kicker">Lectura</p><div class="spec f-serif">Aa</div><h3 style="margin-top:12px">Source Serif 4</h3><p class="small">Entradillas y cuerpo de la noticia. 18–20 px con interlineado amplio (1,6–1,7).</p></div>
-    <div class="card"><p class="kicker">Interfaz y etiquetas</p><div class="spec f-sans">Aa</div><h3 style="margin-top:12px">DM Sans</h3><p class="small">Menú, firmas, etiquetas de sección y botones. Mayúsculas pequeñas con tracking solo en etiquetas.</p></div>
+    <div class="card"><p class="kicker">Interfaz y etiquetas</p><div class="spec f-sans">Aa</div><h3 style="margin-top:12px">Inter Tight (texto)</h3><p class="small">Menú, firmas, etiquetas y botones, en pesos 500–700. Mayúsculas pequeñas con tracking solo en etiquetas.</p></div>
   </div>
   <div class="card" style="margin-top:22px">
     <table class="scale">
@@ -134,7 +134,7 @@
       <tr><td>Entradilla · 17 px</td><td><span class="f-serif" style="font-size:17px">El Ayuntamiento instala nuevas luces para mejorar la seguridad en el barrio.</span></td></tr>
       <tr><td>Etiqueta · 11 px</td><td><span class="kicker" style="margin:0">Mesa del Congreso</span></td></tr>
     </table>
-    <p class="small" style="margin-top:14px"><b>Reglas:</b> titulares en minúscula normal (nunca todo en mayúsculas); máximo tres líneas; un solo color; la cursiva de Fraunces puede servir para una palabra de énfasis o el lema.</p>
+    <p class="small" style="margin-top:14px"><b>Reglas:</b> titulares en minúscula normal (nunca todo en mayúsculas); máximo tres líneas; un solo color; la cursiva de Source Serif 4 puede servir para una palabra de énfasis o el lema.</p>
   </div>
 </section>
 
