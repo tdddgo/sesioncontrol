@@ -13,6 +13,8 @@ ROOT = Path(__file__).parent
 OUT = ROOT / "public"
 SECCIONES = ["Mesa del Congreso", "Presidente de Gobierno", "Ministros", "Diputados oficialistas",
              "Diputados de oposición", "Otro grupo de oposición"]
+ICONOS = {"Mesa del Congreso": "plaza-de-espana", "Presidente de Gobierno": "giralda", "Ministros": "torre-del-oro",
+          "Diputados oficialistas": "setas", "Diputados de oposición": "puente-de-triana", "Otro grupo de oposición": "maestranza"}
 CAMPOS = {"titulo", "seccion", "autor", "entradilla", "imagen", "credito", "audio", "destacada", "publicar", "fecha"}
 IMG_EXT = {".jpg", ".jpeg", ".png", ".webp"}
 MAX_IMG = 2 * 1024 * 1024
@@ -181,7 +183,8 @@ def pagina(titulo, cuerpo, root="", activa=""):
 def figura(a, root, ratio=""):
     if a["imagen"]:
         return f'<figure class="ph {ratio}"><img src="{root}img/{a["imagen"]}" alt="{esc(a["titulo"])}" loading="lazy"></figure>'
-    return f'<figure class="ph {ratio}"><span>{esc(a["seccion"])}</span></figure>'
+    ico = ICONOS.get(a["seccion"], "azulejo")
+    return f'<figure class="ph {ratio}"><span><img class="ph-ico" src="{root}icons/{ico}.svg" alt="" width="96" height="96"></span></figure>'
 
 
 def tarjeta(a, root, size="md", con_img=True, ratio="r-4x3", entradilla=False):
@@ -210,7 +213,7 @@ def home(arts):
     for s in SECCIONES:
         de = [a for a in arts if a["seccion"] == s and id(a) not in usados][:4]
         if de:
-            bloques += (f'<section class="block"><h2 class="section-title">{esc(s)} '
+            bloques += (f'<section class="block"><h2 class="section-title"><span class="st"><img class="st-ico" src="icons/{ICONOS[s]}.svg" alt="" width="34" height="34">{esc(s)}</span> '
                         f'<a href="seccion/{slugify(s)}.html">Ver sección</a></h2>'
                         f'<div class="grid cols-4">{"".join(tarjeta(a, "") for a in de)}</div></section>')
     con_audio = [a for a in arts if a.get("audio")][:4]
@@ -224,7 +227,7 @@ def home(arts):
 
 def pagina_seccion(s, arts):
     de = [a for a in arts if a["seccion"] == s]
-    cuerpo = f'<section class="block"><h2 class="section-title">{esc(s)}</h2>'
+    cuerpo = f'<section class="block"><h2 class="section-title"><span class="st"><img class="st-ico" src="../icons/{ICONOS[s]}.svg" alt="" width="34" height="34">{esc(s)}</span></h2>'
     cuerpo += (f'<div class="grid cols-3">{"".join(tarjeta(a, "../", "lg", True, "r-4x3", True) for a in de)}</div>'
                if de else "<p>Aún no hay noticias en esta sección.</p>") + "</section>"
     return pagina(s, cuerpo, "../", s)
@@ -303,7 +306,8 @@ def main():
     if OUT.exists():
         shutil.rmtree(OUT)
     (OUT / "noticia").mkdir(parents=True); (OUT / "seccion").mkdir(); (OUT / "img").mkdir(); (OUT / "audio").mkdir()
-    for f in ("styles.css", "script.js", "brandbook.html"):
+    shutil.copytree(ROOT / "icons", OUT / "icons")
+    for f in ("styles.css", "script.js", "brandbook.html", "iconos.html", "tipografias.html"):
         shutil.copy(ROOT / f, OUT / f)
     (OUT / ".nojekyll").write_text("")
     (OUT / "index.html").write_text(home(arts), encoding="utf-8")

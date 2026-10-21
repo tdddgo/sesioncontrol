@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#0F2A47" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" role="img"><title>Real Maestranza</title>
+<ellipse cx="32" cy="47" rx="25" ry="9" fill="#F2A154"/>
+<rect x="7" y="25" width="50" height="22" fill="#FBE3C8"/>
+<path d="M7 47a25 9 0 0 0 50 0"/>
+<path d="M12 45v-6a3 3 0 0 1 6 0v6M24 46v-7a3 3 0 0 1 6 0v7M34 46v-7a3 3 0 0 1 6 0v7M46 45v-6a3 3 0 0 1 6 0v6"/>
+<path d="M7 25h50M7 21h50"/></svg>

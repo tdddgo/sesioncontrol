@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#0F2A47" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" role="img"><title>Torre del Oro</title>
+<rect x="17" y="36" width="30" height="20" fill="#FBE3C8"/>
+<rect x="21" y="24" width="22" height="12" fill="#FBE3C8"/>
+<rect x="25" y="13" width="14" height="11" fill="#F2A154"/>
+<path d="M25 13a7 4 0 0 1 14 0"/>
+<path d="M32 9V5"/>
+<path d="M27 48v-4M32 48v-4M37 48v-4M28 31v-3M36 31v-3"/>
+<path d="M6 61q4-3 8 0t8 0t8 0t8 0t8 0t8 0t8 0" stroke="#D9772A"/></svg>
