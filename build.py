@@ -236,11 +236,11 @@ def pagina_noticia(a):
     fecha = a["fecha"].strftime("%d/%m/%Y")
     audio = (f'<div class="audio-box"><span class="kicker">Escucha esta noticia</span>'
              f'<audio controls preload="none" src="../audio/{a["audio"]}"></audio></div>') if a.get("audio") else ""
-    cuerpo = (f'<article class="block" style="max-width:760px;margin:0 auto"><span class="kicker">'
+    cuerpo = (f'<article class="nota"><span class="kicker">'
               f'<a href="../seccion/{slugify(a["seccion"])}.html">{esc(a["seccion"])}</a></span>'
               f'<h1 class="title xl">{esc(a["titulo"])}</h1><p class="sub">{esc(a["entradilla"])}</p>'
-              f'<p class="author">{esc(a["autor"])} · {fecha}</p><div style="margin:16px 0">{figura(a, "../")}{cred}</div>{audio}'
-              f'<div style="font-family:var(--serif);font-size:18px;line-height:1.6;display:grid;gap:14px">{parrafos}</div></article>')
+              f'<p class="author">{esc(a["autor"])} · {fecha}</p><div class="foto">{figura(a, "../")}{cred}</div>{audio}'
+              f'<div class="cuerpo">{parrafos}</div></article>')
     return pagina(a["titulo"], cuerpo, "../", a["seccion"])
 
 
