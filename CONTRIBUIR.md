@@ -1,11 +1,11 @@
-# Cómo publicar en XYZ Sevilla
+# Cómo publicar en red.es
 
 Cada persona escribe sus noticias en **Google Docs** y las sube a **su carpeta** de Drive.
 La web se regenera sola cada 15 minutos. No hay que avisar a nadie ni tocar código.
 
 ## Reglas
 
-1. **Una carpeta por persona.** Dentro de la carpeta compartida `XYZ Sevilla - Redacción` hay una subcarpeta con tu nombre. Solo subes ahí. El nombre de la carpeta es tu firma si no pones `Autor:`.
+1. **Una carpeta por persona.** Dentro de la carpeta compartida `red.es - Redacción` hay una subcarpeta con tu nombre. Solo subes ahí. El nombre de la carpeta es tu firma si no pones `Autor:`.
 2. **Un Google Doc por noticia.** Duplica el Doc `PLANTILLA` y rellénalo. No cambies los nombres de los campos.
 3. **La cabecera va arriba, una línea por campo, seguida de una línea con `---`.** Debajo de `---` va el texto de la noticia (párrafos separados por una línea en blanco).
 4. **`Publicar: si` para que salga.** Con `no` (o sin el campo) queda como borrador y no se ve en la web.

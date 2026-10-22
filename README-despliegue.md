@@ -1,6 +1,6 @@
 # Despliegue (una sola vez)
 
-1. **Drive:** crea la carpeta `XYZ Sevilla - Redacción` con una subcarpeta por persona y el Doc `PLANTILLA` (ver CONTRIBUIR.md). Copia el ID de la carpeta (la parte final de su URL).
+1. **Drive:** crea la carpeta `red.es - Redacción` con una subcarpeta por persona y el Doc `PLANTILLA` (ver CONTRIBUIR.md). Copia el ID de la carpeta (la parte final de su URL).
 2. **Cuenta de servicio:** en Google Cloud crea un proyecto, activa *Google Drive API*, crea una cuenta de servicio y descarga su clave JSON. Comparte la carpeta raíz de Drive con el email de esa cuenta como **Lector**.
 3. **GitHub:** sube este proyecto a un repositorio. En *Settings → Secrets and variables → Actions* crea:
    - `GOOGLE_SERVICE_ACCOUNT_JSON` = contenido completo del JSON

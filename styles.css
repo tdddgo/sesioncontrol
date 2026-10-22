@@ -1,4 +1,4 @@
-/* XYZ Sevilla — hoja de estilos
+/* red.es — hoja de estilos
    Identidad: ver brandbook.html. Para cambiar la paleta, edita las variables de :root */
 :root {
   /* Color */
@@ -62,12 +62,11 @@ article:hover .ph > img { transform: scale(1.035); }
 .edition { display: flex; gap: 14px; justify-content: center; font-size: 13px; margin-bottom: 10px; }
 .edition a.active { font-weight: 700; border-bottom: 2px solid var(--albero-deep); }
 
-/* Logo: XYZ en serif suave, SEVILLA con dos bloques albero */
+/* Logo: «red.es» en minúsculas, sans compacta, con el punto en albero */
 .logo { display: flex; flex-direction: column; align-items: center; color: var(--navy); line-height: 1; }
 .logo:hover { text-decoration: none; }
-.logo-xyz { font-family: var(--display); font-size: 88px; font-weight: 500; letter-spacing: -.045em; line-height: .86; }
-.logo-city { display: flex; align-items: center; gap: 14px; margin-top: 12px; font-family: var(--sans); font-size: 13px; font-weight: 600; letter-spacing: .5em; text-transform: uppercase; padding-left: .5em; }
-.logo-city::before, .logo-city::after { content: ""; width: 34px; height: 6px; border-radius: 3px; background: var(--albero); }
+.logo-main { font-family: var(--display); font-size: 84px; font-weight: 500; letter-spacing: -.055em; line-height: .9; }
+.logo-main i { font-style: normal; color: var(--albero-deep); }
 
 .btn { display: inline-block; padding: 9px 18px; font-size: 13px; font-weight: 700; letter-spacing: .02em; border-radius: 999px; border: 1.5px solid var(--navy); color: var(--navy); background: transparent; cursor: pointer; transition: background .15s, color .15s, border-color .15s; }
 .btn:hover { text-decoration: none; background: var(--navy); color: #fff; }
@@ -179,9 +178,7 @@ figcaption { font-size: 12px; color: var(--muted); margin-top: 6px; line-height:
 @media (max-width: 700px) {
   .header-top { grid-template-columns: auto 1fr auto; padding: 14px 0; }
   .date, .header-actions .btn:not(.primary), .edition { display: none; }
-  .logo-xyz { font-size: 50px; }
-  .logo-city { font-size: 10px; margin-top: 7px; gap: 8px; }
-  .logo-city::before, .logo-city::after { width: 18px; height: 5px; }
+  .logo-main { font-size: 46px; }
   .burger { display: block; }
   .main-nav { display: none; position: static; }
   .main-nav.open { display: block; }
