@@ -50,14 +50,16 @@ def parse_doc(text, persona, nombre_origen, modificado):
             if k in CAMPOS:
                 meta[k] = v.strip()
     cuerpo = cuerpo.lstrip("-").strip()
-    for obl in ("titulo", "seccion", "publicar"):
+    for obl in ("titulo", "publicar"):
         if not meta.get(obl):
             return None, f"falta el campo obligatorio '{obl.capitalize()}'"
     if meta["publicar"].lower() not in ("si", "sí"):
         return None, "BORRADOR"
-    secc = next((s for s in SECCIONES if norm_key(s) == norm_key(meta["seccion"])), None)
+    # La sección sale de la carpeta del grupo; el campo Seccion, si existe, tiene prioridad.
+    nombre_secc = meta.get("seccion") or persona
+    secc = next((s for s in SECCIONES if norm_key(s) == norm_key(nombre_secc)), None)
     if not secc:
-        return None, f"sección '{meta['seccion']}' no válida"
+        return None, f"sección '{nombre_secc}' no válida (usa una carpeta de grupo o el campo Seccion)"
     fecha = modificado
     if meta.get("fecha"):
         try:
@@ -65,7 +67,7 @@ def parse_doc(text, persona, nombre_origen, modificado):
         except ValueError:
             return None, "Fecha debe tener formato AAAA-MM-DD"
     return {
-        "titulo": meta["titulo"], "seccion": secc, "autor": meta.get("autor") or persona,
+        "titulo": meta["titulo"], "seccion": secc, "autor": meta.get("autor") or "Redacción red.es",
         "entradilla": meta.get("entradilla", ""), "imagen_nombre": meta.get("imagen", ""), "audio_nombre": meta.get("audio", ""),
         "credito": meta.get("credito", ""), "destacada": meta.get("destacada", "").lower() in ("si", "sí"),
         "cuerpo": cuerpo, "fecha": fecha, "persona": persona, "origen": nombre_origen,
