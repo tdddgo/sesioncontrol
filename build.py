@@ -176,6 +176,7 @@ def pagina(titulo, cuerpo, root="", activa=""):
 <main class="container">{cuerpo}</main>
 <footer class="site-footer"><div class="container"><h4>red.es</h4>
 <p>Proyecto universitario. Contenido elaborado por el equipo. Sin relación con la entidad pública Red.es.</p>
+<p><a class="pdf-link" href="{root}como-aportar.pdf" target="_blank" rel="noopener">Cómo aportar (PDF)</a></p>
 <p class="copy">© {datetime.now().year} red.es. Trabajo académico.</p></div></footer>
 <script src="{root}script.js?v={VERSION}"></script></body></html>"""
 
@@ -306,7 +307,7 @@ def main():
         shutil.rmtree(OUT)
     (OUT / "noticia").mkdir(parents=True); (OUT / "seccion").mkdir(); (OUT / "img").mkdir(); (OUT / "audio").mkdir()
     shutil.copytree(ROOT / "icons", OUT / "icons")
-    for f in ("styles.css", "script.js", "brandbook.html", "iconos.html", "tipografias.html"):
+    for f in ("styles.css", "script.js", "brandbook.html", "iconos.html", "tipografias.html", "como-aportar.pdf"):
         shutil.copy(ROOT / f, OUT / f)
     (OUT / ".nojekyll").write_text("")
     (OUT / "index.html").write_text(home(arts), encoding="utf-8")

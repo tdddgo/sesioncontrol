@@ -158,6 +158,8 @@ figcaption { font-size: 12px; color: var(--muted); margin-top: 6px; line-height:
 .site-footer h4 { color: #fff; margin-bottom: 10px; font-family: var(--display); font-weight: 500; font-size: 28px; letter-spacing: -.04em; }
 .site-footer ul.links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 24px; }
 .site-footer a:hover { color: #fff; }
+.pdf-link { display: inline-block; margin-top: 12px; padding: 9px 18px; border: 1.5px solid var(--albero); border-radius: 99px; color: var(--albero); font-weight: 700; font-size: 13px; letter-spacing: .02em; }
+.pdf-link:hover { background: var(--albero); color: var(--navy) !important; text-decoration: none; }
 .copy { border-top: 1px solid #243e5c; margin-top: 28px; padding-top: 16px; color: #8da0b6; }
 
 /* ---------- Audio / podcast ---------- */
