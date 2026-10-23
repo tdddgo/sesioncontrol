@@ -12,9 +12,9 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 OUT = ROOT / "public"
 SECCIONES = ["Mesa del Congreso", "Presidente de Gobierno", "Ministros", "Diputados oficialistas",
-             "Diputados de oposición", "Otro grupo de oposición"]
+             "Diputados de oposición", "Otro grupo de oposición", "Sociedad"]
 ICONOS = {"Mesa del Congreso": "plaza-de-espana", "Presidente de Gobierno": "giralda", "Ministros": "torre-del-oro",
-          "Diputados oficialistas": "setas", "Diputados de oposición": "puente-de-triana", "Otro grupo de oposición": "maestranza"}
+          "Diputados oficialistas": "setas", "Diputados de oposición": "puente-de-triana", "Otro grupo de oposición": "maestranza", "Sociedad": "azahar"}
 CAMPOS = {"titulo", "seccion", "autor", "entradilla", "imagen", "credito", "audio", "destacada", "publicar", "fecha"}
 IMG_EXT = {".jpg", ".jpeg", ".png", ".webp"}
 MAX_IMG = 2 * 1024 * 1024
