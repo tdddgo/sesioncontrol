@@ -201,3 +201,8 @@ figcaption { font-size: 12px; color: var(--muted); margin-top: 6px; line-height:
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* Actualidad externa (titulares de Google Noticias) */
+.ext .src{color:var(--muted,#5B6B7D);font-size:.85em}
+.ext-note{margin-top:10px;font-size:.8rem;color:var(--muted,#5B6B7D)}
+.ext ol li a{font-family:var(--display)}
