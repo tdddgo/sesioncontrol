@@ -5,8 +5,7 @@ Uso:
   python build.py --local contenido-ejemplo     # prueba sin Drive
   python build.py --drive                       # usa GOOGLE_SERVICE_ACCOUNT_JSON y DRIVE_FOLDER_ID
 """
-import argparse, html, io, json, os, re, shutil, sys, unicodedata, urllib.parse, urllib.request
-import xml.etree.ElementTree as ET
+import argparse, html, io, json, os, re, shutil, sys, unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -154,59 +153,6 @@ def leer_drive(folder_id):
     return docs, medios
 
 
-# ---------- Actualidad externa (Google Noticias, solo titulares y enlace) ----------
-CONSULTAS = {
-    "Mesa del Congreso": "Congreso de los Diputados pleno comisión ley",
-    "Presidente de Gobierno": "Pedro Sánchez Gobierno Moncloa",
-    "Ministros": "Consejo de Ministros aprueba",
-    "Diputados oficialistas": "PSOE Sumar grupo parlamentario Congreso",
-    "Diputados de oposición": "PP Feijóo Congreso propuesta",
-    "Otro grupo de oposición": "Vox Junts ERC PNV Congreso",
-    "Sociedad": "vivienda sanidad educación España sociedad",
-}
-# Este mundo editorial no cubre elecciones: se excluyen de la consulta y, por seguridad, del resultado.
-EXCLUIR = "-elecciones -29N -candidaturas -campaña -comicios -votar"
-MEDIOS = " (" + " OR ".join(f"site:{d}" for d in ("rtve.es", "europapress.es", "efe.com", "lamoncloa.gob.es", "elpais.com", "eldiario.es", "elmundo.es", "abc.es", "lavanguardia.com", "20minutos.es", "publico.es", "elconfidencial.com", "infobae.com/espana")) + ")"
-FILTRO_ELECTORAL = re.compile(r"eleccion|comicios|29\s?-?n\b|29 de noviembre|candidat|campa[ñn]a electoral|votar|urnas|sondeo|encuesta|escrutinio|m[ií]tin|listas? (?:al|de)", re.I)
-RUIDO = re.compile(r"per[uú]\b|fujimor|chile|argentin|m[eé]xic|colombia|venezuela|boliv|guatemal|ecuador|hondur|panam|cuba|uruguay|paraguay", re.I)
-FUENTES_NO = {"facebook", "x", "youtube", "instagram", "tiktok"}
-NOTICIAS_EXT = {}
-
-
-def cargar_noticias_externas(por_seccion=6):
-    for sec, q in CONSULTAS.items():
-        url = ("https://news.google.com/rss/search?q=" + urllib.parse.quote(f"{q} {EXCLUIR}{MEDIOS} when:3d")
-               + "&hl=es&gl=ES&ceid=ES:es")
-        try:
-            raw = urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"}), timeout=20).read()
-            items = []
-            for it in ET.fromstring(raw).iter("item"):
-                titulo = (it.findtext("title") or "").strip()
-                fuente = (it.findtext("source") or "").strip()
-                if fuente and titulo.endswith(" - " + fuente):
-                    titulo = titulo[: -len(fuente) - 3]
-                if not titulo or FILTRO_ELECTORAL.search(titulo) or RUIDO.search(titulo) or fuente.lower() in FUENTES_NO:
-                    continue
-                items.append({"titulo": titulo, "fuente": fuente, "link": (it.findtext("link") or "").strip(),
-                              "fecha": (it.findtext("pubDate") or "")[5:22]})
-            NOTICIAS_EXT[sec] = items[:por_seccion]
-        except Exception as e:  # una caída de Google no debe romper la web
-            print(f"AVISO: no se pudieron cargar titulares de «{sec}»: {e}", file=sys.stderr)
-            NOTICIAS_EXT[sec] = []
-
-
-def lista_externa(items):
-    return "".join(f'<li><a href="{esc(i["link"])}" target="_blank" rel="noopener nofollow">{esc(i["titulo"])}</a>'
-                   f'<span class="src"> — {esc(i["fuente"])}</span></li>' for i in items)
-
-
-def bloque_externo(titulo, items):
-    if not items:
-        return ""
-    return (f'<section class="block most-read ext"><h2 class="section-title">{esc(titulo)}</h2><ol>{lista_externa(items)}</ol>'
-            '<p class="ext-note">Titulares de Google Noticias con enlace a cada medio. El contenido pertenece a sus autores.</p></section>')
-
-
 # ---------- HTML ----------
 def nav_html(root, activa=""):
     items = [f'<li><a href="{root}index.html"{" class=active" if not activa else ""}>Portada</a></li>']
@@ -276,12 +222,6 @@ def home(arts):
     if con_audio:
         bloques += ('<section class="block"><h2 class="section-title">Podcast</h2>'
                     f'<div class="grid cols-4">{"".join(tarjeta(a, "") for a in con_audio)}</div></section>')
-    mezcla = []
-    for i in range(6):
-        for sec in SECCIONES:
-            if i < len(NOTICIAS_EXT.get(sec, [])):
-                mezcla.append(NOTICIAS_EXT[sec][i])
-    bloques += bloque_externo("Actualidad en la prensa", mezcla[:10])
     ult = "".join(f'<li><a href="noticia/{a["slug"]}.html">{esc(a["titulo"])}</a></li>' for a in arts[:10])
     ultimas = f'<section class="block most-read"><h2 class="section-title">Lo más reciente</h2><ol>{ult}</ol></section>'
     return pagina("Noticias de Sevilla, Andalucía y España", hero + bloques + ultimas)
@@ -292,7 +232,6 @@ def pagina_seccion(s, arts):
     cuerpo = f'<section class="block"><h2 class="section-title"><span class="st"><img class="st-ico" src="../icons/{ICONOS[s]}.svg" alt="" width="34" height="34">{esc(s)}</span></h2>'
     cuerpo += (f'<div class="grid cols-3">{"".join(tarjeta(a, "../", "lg", True, "r-4x3", True) for a in de)}</div>'
                if de else "<p>Aún no hay noticias en esta sección.</p>") + "</section>"
-    cuerpo += bloque_externo("Actualidad en la prensa", NOTICIAS_EXT.get(s, []))
     return pagina(s, cuerpo, "../", s)
 
 
@@ -324,7 +263,6 @@ def main():
                 sys.exit(f"ERROR: el secreto {var} está vacío o no existe. Créalo en Settings > Secrets and variables > Actions > Repository secrets.")
     docs, medios = leer_local(args.local) if args.local else leer_drive(os.environ["DRIVE_FOLDER_ID"].strip())
 
-    cargar_noticias_externas()
     arts, errores, slugs = [], [], set()
     for persona, nombre, texto, mod in docs:
         a, err = parse_doc(texto, persona, nombre, mod)
